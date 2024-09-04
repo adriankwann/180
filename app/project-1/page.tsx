@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import NavBar from '@/components/ui/navbar';
@@ -104,6 +105,8 @@ export default function Project1() {
             </p>
           </div>
 
+          <Separator />
+
           <div className="flex flex-col justify-center mb-4 mt-6">
             <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
               Overview
@@ -130,8 +133,137 @@ export default function Project1() {
             </Link>
           </div>
 
-          <div className="flex flex-col justify-center mb-10 mt-6">
+          <Separator />
+
+          <div className="flex flex-col mb-4 mt-6">
             <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
+              Process
+            </h2>
+
+            {/* Flex container for the first sentence and image */}
+            <div className="flex flex-col lg:flex-row justify-between items-start mt-3 gap-4">
+              {/* First sentence on the left */}
+              <div className="flex-1">
+                <p className="text-sm text-slate-500 dark:text-slate-300 text-left mb-0">
+                  We start by loading the images into three color channels: R,
+                  G, and B. We align the red and green channels to the blue one,
+                  independently. We then combine the three channels into a
+                  single image, which is the final result. For small images, we
+                  use an exhaustive search between (-15, 15) for both x and y to
+                  find the best alignment.
+                </p>
+                <br></br>
+                <h3 className="text-l font-semibold text-left text-black dark:text-white mt-1 mb-1">
+                  Metric Selection
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-300 text-left">
+                  The first thing we need to do is to select a metric. Simple
+                  metrics include measuring the Euclidean distances between two
+                  images, or the normalized cross-correlation. I used the latter
+                  initially to align the images. An example of an image aligned
+                  using NCC is located on the right-hand side.
+                </p>
+                <br></br>
+                <p className="text-sm text-slate-500 dark:text-slate-300 text-left">
+                  However, NCC (and other simple metrics) can be sensitive to
+                  other factors like brightness. Some of the images in our
+                  dataset have different brightness levels across different
+                  channels; hence, we need a more robust metric that doesn't
+                  involve comparing pixels directly.
+                </p>
+              </div>
+
+              {/* Image on the right side */}
+              <div className="flex-none lg:ml-4 mt-3 lg:mt-0">
+                <Image
+                  src="/cathedral_ncc.jpg"
+                  alt="Cathedral aligned using NCC"
+                  width={300} // Adjust the width as needed
+                  height={200} // Adjust the height as needed
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-2">
+                  Figure 1: Cathedral image aligned using NCC
+                </p>
+              </div>
+            </div>
+
+            {/* Continue the text below the first image */}
+            <div className="mt-3">
+              <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+                Hence, I elected to use Structural Similarity in
+                skimage.metrics. This detects objects and edges in the photos
+                rather than relying on pixel values; in theory, this will help
+                us align the images better. For the rest of the project, I used
+                SSIM instead of NCC.
+              </p>
+            </div>
+
+            {/* Flex container for the last two images, centered */}
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/emir_ncc.jpg" // Replace with the path to your first image
+                  alt="First image example"
+                  width={300} // Adjust the width as needed
+                  height={200} // Adjust the height as needed
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2: Emir aligned with NCC
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="/emir.jpg" // Replace with the path to your second image
+                  alt="Second image example"
+                  width={300} // Adjust the width as needed
+                  height={200} // Adjust the height as needed
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 3: Emir aligned with SSIM
+                </p>
+              </div>
+            </div>
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              As one can see, NCC struggles with this photo as the brightness
+              levels vary across color channels. SSIM produces a much better
+              result.
+            </p>
+
+            <h3 className="text-l font-semibold text-left text-black dark:text-white mt-4 mb-1">
+              Image Pyramid
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left mb-0">
+              For large images, we can't use exhaustive search as it is too
+              computationally expensive. Hence, we elect to implement an
+              coarse-to-fine image pyramid from scratch. This involves rescaling
+              our original images to a smaller size and aligning them first. A
+              small shift in the smaller image corresponds to a larger shift in
+              the original image, cutting out much of the search process.
+            </p>
+            <br></br>
+            <p className="text-sm text-slate-500 dark:text-slate-300 text-left">
+              In addition, I elected to decrease the search range as we go from
+              coarse to fine. This is because of two reasons:
+            </p>
+            <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
+              1. As we go from coarse to fine, the images are already roughly
+              aligned. Hence, we don't need to search as much.
+            </p>
+            <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
+              2. np.roll gets exponentially slower as the alignment range
+              increases. Hence, we need to decrease the search range to keep the
+              runtime manageable.
+            </p>
+          </div>
+
+          <Separator />
+          <div className="flex flex-col justify-center mb-10 mt-6">
+            <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
               Final Results
             </h2>
           </div>
