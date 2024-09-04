@@ -12,34 +12,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const small_image_data = [
-  {
-    name: "Monastery",
-    image: "/monastery.jpg",
-    displacements: [
-      { type: "Green", x: 2, y: -3 },
-      { type: "Red", x: 2, y: 3 },
-    ],
-  },
-  {
-    name: "Tobolsk",
-    image: "/tobolsk.jpg",
-    displacements: [
-      { type: "Green", x: 2, y: 3 },
-      { type: "Red", x: 3, y: 6 },
-    ],
-  },
-  {
-    name: "Cathedral",
-    image: "/cathedral.jpg",
-    displacements: [
-      { type: "Green", x: 2, y: 5 },
-      { type: "Red", x: 3, y: 12 },
-    ],
-  },
-];
+// Define the type for each item in the image data array
+interface ImageDataItem {
+  name: string;
+  image: string;
+  displacements: { type: string; x: number; y: number }[];
+}
 
-export default function Carousel_JPGS() {
+// Define the props type for the Carousel component
+interface CarouselJPGSProps {
+  imageData: ImageDataItem[];
+}
+
+// Update the component to accept typed props
+export default function Carousel_JPGS({ imageData }: CarouselJPGSProps) {
   return (
     <div className="mx-auto max-w-xs">
       <Carousel
@@ -50,19 +36,19 @@ export default function Carousel_JPGS() {
         ]}
       >
         <CarouselContent>
-          {small_image_data.map((item, index) => (
+          {imageData.map((item, index) => (
             <CarouselItem key={index}>
               <Card>
-                <CardContent className="flex flex-col items-center justify-center p-2"> {/* Reduced padding */}
+                <CardContent className="flex flex-col items-center justify-center p-2">
                   <Image
                     src={item.image}
                     alt={item.name}
-                    width={350} // Adjusted width for smaller size
-                    height={350} // Adjusted height for smaller size
-                    className="rounded-md" // Optional: add rounded corners
+                    width={350}
+                    height={350}
+                    className="rounded-md"
                   />
-                  <h3 className="text-lg font-bold mt-2">{item.name}</h3> {/* Reduced margin-top */}
-                  <div className="text-sm text-gray-500 mt-1"> {/* Reduced margin-top */}
+                  <h3 className="text-lg font-bold mt-2">{item.name}</h3>
+                  <div className="text-sm text-gray-500 mt-1">
                     {item.displacements.map((disp, idx) => (
                       <p key={idx}>
                         Offset for {disp.type}: ({disp.x}, {disp.y})
@@ -72,7 +58,7 @@ export default function Carousel_JPGS() {
                 </CardContent>
               </Card>
             </CarouselItem>
-          ))}a
+          ))}
         </CarouselContent>
 
         {/* Carousel Controls */}

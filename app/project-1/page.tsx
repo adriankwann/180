@@ -9,6 +9,34 @@ import { Progress } from "@/components/ui/progress"; // Import your Progress com
 import { Button } from "@/components/ui/button";
 
 
+const small_image_data = [
+    {
+      name: "Monastery",
+      image: "/monastery.jpg",
+      displacements: [
+        { type: "Green", x: 2, y: -3 },
+        { type: "Red", x: 2, y: 3 },
+      ],
+    },
+    {
+      name: "Tobolsk",
+      image: "/tobolsk.jpg",
+      displacements: [
+        { type: "Green", x: 2, y: 3 },
+        { type: "Red", x: 3, y: 6 },
+      ],
+    },
+    {
+      name: "Cathedral",
+      image: "/cathedral.jpg",
+      displacements: [
+        { type: "Green", x: 2, y: 5 },
+        { type: "Red", x: 3, y: 12 },
+      ],
+    },
+  ];
+
+
 export default function Project1() {
   const [loading, setLoading] = useState(true); // State to manage loading status
   const [progress, setProgress] = useState(0); // State to manage progress value
@@ -101,7 +129,7 @@ useEffect(() => {
               <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">
                 Small Images
               </h3>
-              <Carousel_JPGS />
+              <Carousel_JPGS imageData={small_image_data}/>
             </div>
 
             {/* Large Images Carousel */}
@@ -109,7 +137,7 @@ useEffect(() => {
               <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">
                 Large Images
               </h3>
-              <Carousel_JPGS />
+              <Carousel_JPGS imageData={small_image_data}/>
             </div>
           </div>
         </div>
