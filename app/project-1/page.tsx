@@ -1,11 +1,11 @@
-'use client'; // Ensure this component is treated as a client component
+'use client';
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import NavBar from '@/components/ui/navbar';
 import Carousel_JPGS from '@/components/ui/carousel-jpg';
-import { Progress } from '@/components/ui/progress'; // Import your Progress component
+import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 
 const small_image_data = [
@@ -36,37 +36,35 @@ const small_image_data = [
 ];
 
 export default function Project1() {
-  const [loading, setLoading] = useState(true); // State to manage loading status
-  const [progress, setProgress] = useState(0); // State to manage progress value
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
           clearInterval(progressInterval);
-          setLoading(false); // Set loading to false once progress is complete
+          setLoading(false);
           return 100;
         }
-        return prevProgress + 20; // Increase increment for faster progress
+        return prevProgress + 20;
       });
-    }, 100); // Decrease interval duration for smoother effect
+    }, 100);
 
-    return () => clearInterval(progressInterval); // Cleanup the interval on component unmount
+    return () => clearInterval(progressInterval);
   }, []);
 
   if (loading) {
-    // Render progress bar while loading
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-950">
         <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-          Loading...
+          Loading Prokudin-Gorskii...
         </h2>
         <Progress value={progress} className="w-[60%]" />
       </div>
     );
   }
 
-  // Render the main content once loading is complete
   return (
     <>
       <NavBar />
