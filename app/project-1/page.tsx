@@ -188,8 +188,8 @@ export default function Project1() {
                   However, NCC (and other simple metrics) can be sensitive to
                   other factors like brightness. Some of the images in our
                   dataset have different brightness levels across different
-                  channels; hence, we need a more robust metric that doesn't
-                  involve comparing pixels directly.
+                  channels; hence, we need a more robust metric that
+                  doesn&apos;t involve comparing pixels directly.
                 </p>
               </div>
 
@@ -258,7 +258,7 @@ export default function Project1() {
             </h3>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left mb-0">
-              For large images, we can't use exhaustive search as it is too
+              For large images, we can&apos;t use exhaustive search as it is too
               computationally expensive. Hence, we elect to implement an
               coarse-to-fine image pyramid from scratch. This involves rescaling
               our original images to a smaller size and aligning them first. A
@@ -272,7 +272,7 @@ export default function Project1() {
             </p>
             <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
               1. As we go from coarse to fine, the images are already roughly
-              aligned. Hence, we don't need to search as much.
+              aligned. Hence, we don&apos;t need to search as much.
             </p>
             <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
               2. np.roll gets exponentially slower as the alignment range
