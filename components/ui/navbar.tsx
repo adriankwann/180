@@ -17,11 +17,6 @@ export default function NavBar() {
           <NavDropDown />
         </div>
 
-        {/* Center Title with Icon */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center">
-          <h1 className="text-xl font-bold">CS 180</h1>
-        </div>
-
         {/* Right-side Toggle */}
         <div className="flex items-center">
           <ModeToggle />
