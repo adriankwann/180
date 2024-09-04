@@ -36,6 +36,26 @@ const small_image_data = [
   },
 ];
 
+//TODO: Add large images
+const large_image_data = [
+  {
+    name: 'Emir',
+    image: '/emir.jpg',
+    displacements: [
+      { type: 'Green', x: 21, y: 50 },
+      { type: 'Red', x: 40, y: 105 },
+    ],
+  },
+  {
+    name: 'Church',
+    image: '/church.jpg',
+    displacements: [
+      { type: 'Green', x: 4, y: 25 },
+      { type: 'Red', x: -4, y: 58 },
+    ],
+  },
+];
+
 export default function Project1() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -283,7 +303,7 @@ export default function Project1() {
               <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">
                 Large Images
               </h3>
-              <Carousel_JPGS imageData={small_image_data} />
+              <Carousel_JPGS imageData={large_image_data} />
             </div>
           </div>
         </div>
