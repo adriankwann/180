@@ -1,10 +1,8 @@
-import Image from "next/image";
-import {ModeToggle} from "@/components/ui/mode-toggle";
-import NavBar from "@/components/ui/navbar";
+import NavBar from '@/components/ui/navbar';
 
 export default function Home() {
   return (
-    <NavBar/>
+    <NavBar />
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     //   <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
     //   </div>

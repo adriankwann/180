@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { NavDropDown } from "@/components/ui/nav-dropdown";
+import Link from 'next/link';
+import { ModeToggle } from '@/components/ui/mode-toggle';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { NavDropDown } from '@/components/ui/nav-dropdown';
 import { Images } from 'lucide-react';
 
 export default function NavBar() {
