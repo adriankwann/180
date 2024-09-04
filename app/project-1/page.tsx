@@ -1,35 +1,38 @@
 "use client"; // Ensure this component is treated as a client component
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 import NavBar from "@/components/ui/navbar";
 import Carousel_JPGS from "@/components/ui/carousel-jpg";
 import { Progress } from "@/components/ui/progress"; // Import your Progress component
+import { Button } from "@/components/ui/button";
+
 
 export default function Project1() {
   const [loading, setLoading] = useState(true); // State to manage loading status
   const [progress, setProgress] = useState(0); // State to manage progress value
 
-  useEffect(() => {
-    // Simulate a loading progress
-    const progressInterval = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          clearInterval(progressInterval);
-          setLoading(false); // Set loading to false once progress is complete
-          return 100;
-        }
-        return prevProgress + 10; // Increment progress by 10
-      });
-    }, 100); // Adjust the interval duration as needed
+useEffect(() => {
+  const progressInterval = setInterval(() => {
+    setProgress((prevProgress) => {
+      if (prevProgress >= 100) {
+        clearInterval(progressInterval);
+        setLoading(false); // Set loading to false once progress is complete
+        return 100;
+      }
+      return prevProgress + 20; // Increase increment for faster progress
+    });
+  }, 100); // Decrease interval duration for smoother effect
 
-    return () => clearInterval(progressInterval); // Cleanup the interval on component unmount
-  }, []);
+  return () => clearInterval(progressInterval); // Cleanup the interval on component unmount
+}, []);
+
 
   if (loading) {
     // Render progress bar while loading
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-black">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-950">
         <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
           Loading...
         </h2>
@@ -53,13 +56,40 @@ export default function Project1() {
           </p>
         </div>
 
-        {/* Content with Margins */}
         <div className="mx-auto max-w-4xl">
           <Separator />
 
+          <div className = "flex flex-col justify-center mb-4 mt-6">
+            <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
+              Background
+            </h2>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left"> 
+            The Prokudin-Gorskii photo collection is an early series of color photographs captured by Russian photographer Sergei Mikhailovich Prokudin-Gorskii from 1909 to 1915. Commissioned by Tsar Nicholas II, Prokudin-Gorskii used a pioneering technique involving a special camera that took three black-and-white photos through red, green, and blue filters, which were then combined to create full-color images. His work vividly documented the diverse landscapes, cultures, and everyday life of the Russian Empire, providing a rare glimpse into early 20th-century Russia. The collection is celebrated as a significant achievement in photography, showcasing the rich cultural heritage of the era in vibrant detail.
+            </p>
+          </div>
+
+          <div className="flex flex-col justify-center mb-4 mt-6">
+  <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
+    Overview
+  </h2>
+
+  <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left"> 
+    The goal of this assignment is to take the digitized Prokudin-Gorskii glass plate images and, using image processing techniques, automatically produce a color image with as few visual artifacts as possible. In order to do this, you will need to extract the three color channel images, place them on top of each other, and align them so that they form a single RGB color image. To see more examples of the Prokudin-Gorskii collection, please visit the Library of Congress website.
+  </p>
+
+  <Link href="http://www.loc.gov/exhibits/empire/making.html" className="self-center mt-3"> {/* Added self-center and margin-top */}
+    <Button variant="link">
+      Library of Congress
+    </Button>
+  </Link>
+</div>
+
+
+
           {/* Subtitle for the Carousel */}
-          <div className="flex justify-center mb-4 mt-6">
-            <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
+          <div className="flex flex-col justify-center mb-10 mt-6">
+            <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
               Final Results
             </h2>
           </div>
