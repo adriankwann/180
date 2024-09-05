@@ -56,14 +56,12 @@ export const CardGrid: React.FC = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cardsData.map((card) => (
-            <Link href="/project-1">
-              <CardComponent
-                key={card.id}
-                title={card.title}
-                image={card.image}
-                description={card.description}
-              />
-            </Link>
+            <CardComponent
+              key={card.id}
+              title={card.title}
+              image={card.image}
+              description={card.description}
+            />
           ))}
         </div>
       </div>
