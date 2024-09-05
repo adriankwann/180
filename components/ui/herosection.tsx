@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { motion } from 'framer-motion'; // Import Framer Motion
+import { Link as ScrollLink } from 'react-scroll'; // Import Link from react-scroll
+import { motion } from 'framer-motion';
 
 export default function HeroSection() {
   return (
@@ -22,9 +22,15 @@ export default function HeroSection() {
             Adrian Kwan
           </p>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Link href="/project-1">
-              <Button>Project 1</Button>
-            </Link>
+            {/* Use react-scroll's Link for smooth scrolling */}
+            <ScrollLink
+              to="projects"
+              smooth={true}
+              duration={500}
+              offset={-50} // Optional offset for scrolling position
+            >
+              <Button>Projects</Button>
+            </ScrollLink>
           </div>
         </div>
 
