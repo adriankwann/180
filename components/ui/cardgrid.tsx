@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CardComponent } from '@/components/ui/hero-projectcard';
-import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
+import EmptyCard from '@/components/ui/empty-card';
 
 export const CardGrid: React.FC = () => {
   const cardsData = [
@@ -9,42 +10,45 @@ export const CardGrid: React.FC = () => {
       title: 'Project 1',
       image: '/emir.jpg',
       description: 'Reconstructing the Prokudin-Gorskii photo collection',
+      link: '/project-1',
     },
     {
       id: '2',
-      title: 'Project Beta',
+      title: 'Project 2',
       image: '/image2.jpg',
-      description: 'Description of Project Beta',
+      description: 'Coming Soon',
+      link: '/project-2',
     },
     {
       id: '3',
-      title: 'Project Gamma',
+      title: 'Project 3',
       image: '/image3.jpg',
-      description: 'Description of Project Gamma',
+      description: 'Coming Soon',
+      link: '/project-3',
     },
-    {
-      id: '4',
-      title: 'Project Delta',
-      image: '/image4.jpg',
-      description: 'Description of Project Delta',
-    },
-    {
-      id: '5',
-      title: 'Project Epsilon',
-      image: '/image5.jpg',
-      description: 'Description of Project Epsilon',
-    },
-    {
-      id: '6',
-      title: 'Project Zeta',
-      image: '/image6.jpg',
-      description: 'Description of Project Zeta',
-    },
+    // {
+    //   id: '4',
+    //   title: 'Project 4',
+    //   image: '/image4.jpg',
+    //   description: 'Coming Soon',
+    // },
+    // {
+    //   id: '5',
+    //   title: 'Project 5',
+    //   image: '/image5.jpg',
+    //   description: 'Coming Soon',
+    // },
+    // {
+    //   id: '6',
+    //   title: 'Project 6',
+    //   image: '/image6.jpg',
+    //   description: 'Coming Soon',
+    // },
   ];
 
   return (
     <>
-      <div className="flex flex-col justify-center mb-5 mt-10">
+      <div className="flex flex-col items-center mb-5 mt-10">
         <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
           Projects
         </h2>
@@ -54,15 +58,25 @@ export const CardGrid: React.FC = () => {
         id="projects"
         className="container mx-auto px-6 md:px-10 lg:px-16 py-12"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cardsData.map((card) => (
-            <CardComponent
-              key={card.id}
-              title={card.title}
-              image={card.image}
-              description={card.description}
-            />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          {cardsData.map((card) =>
+            card.description === 'Coming Soon' ? (
+              <EmptyCard
+                key={card.id}
+                title={card.title}
+                image={card.image}
+                description={card.description}
+              />
+            ) : (
+              <CardComponent
+                key={card.id}
+                title={card.title}
+                image={card.image}
+                description={card.description}
+                link={card.link}
+              />
+            )
+          )}
         </div>
       </div>
     </>
