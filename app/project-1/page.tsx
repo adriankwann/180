@@ -8,6 +8,7 @@ import NavBar from '@/components/ui/navbar';
 import Carousel_JPGS from '@/components/ui/carousel-jpg';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
+import Footer from '@/components/ui/footer';
 
 const small_image_data = [
   {
@@ -308,6 +309,7 @@ export default function Project1() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
