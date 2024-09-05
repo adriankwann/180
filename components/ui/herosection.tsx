@@ -13,7 +13,10 @@ export default function HeroSection() {
         {/* Left Side - Text Content */}
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter text-black dark:text-white md:text-5xl lg:text-6xl">
-            CS180: Computer Vision
+            CS180: Intro to
+          </h1>
+          <h1 className="text-4xl font-bold tracking-tighter text-black dark:text-white md:text-5xl lg:text-6xl">
+            Computer Vision
           </h1>
           <p className="max-w-[600px] text-gray-700 dark:text-gray-400 md:text-xl lg:text-base xl:text-xl">
             Adrian Kwan
