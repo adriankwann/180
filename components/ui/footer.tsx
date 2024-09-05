@@ -28,7 +28,8 @@ export default function Footer() {
   );
 }
 
-function LinkedinIcon(props) {
+function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
+  // Explicit type for props
   return (
     <svg
       {...props}
@@ -49,7 +50,8 @@ function LinkedinIcon(props) {
   );
 }
 
-function TwitterIcon(props) {
+function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
+  // Explicit type for props
   return (
     <svg
       {...props}

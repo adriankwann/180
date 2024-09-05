@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { CardComponent } from '@/components/ui/hero-projectcard'; // Adjust the import path as necessary
+import { CardComponent } from '@/components/ui/hero-projectcard';
+import Link from 'next/link';
 
 export const CardGrid: React.FC = () => {
   const cardsData = [
     {
       id: '1',
-      title: 'Project Alpha',
-      image: '/image1.jpg',
-      description: 'Description of Project Alpha',
+      title: 'Project 1',
+      image: '/emir.jpg',
+      description: 'Reconstructing the Prokudin-Gorskii photo collection',
     },
     {
       id: '2',
@@ -42,20 +43,30 @@ export const CardGrid: React.FC = () => {
   ];
 
   return (
-    <div
-      id="projects"
-      className="container mx-auto px-6 md:px-10 lg:px-16 py-12"
-    >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cardsData.map((card) => (
-          <CardComponent
-            key={card.id}
-            title={card.title}
-            image={card.image}
-            description={card.description}
-          />
-        ))}
+    <>
+      <div className="flex flex-col justify-center mb-5 mt-10">
+        <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
+          Projects
+        </h2>
       </div>
-    </div>
+
+      <div
+        id="projects"
+        className="container mx-auto px-6 md:px-10 lg:px-16 py-12"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {cardsData.map((card) => (
+            <Link href="/project-1">
+              <CardComponent
+                key={card.id}
+                title={card.title}
+                image={card.image}
+                description={card.description}
+              />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
