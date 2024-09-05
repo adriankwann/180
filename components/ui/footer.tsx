@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 export default function Footer() {
   return (
     <>
@@ -10,16 +9,16 @@ export default function Footer() {
             aria-label="LinkedIn"
             prefetch={false}
           >
-            <LinkedinIcon className="h-6 w-6 text-muted-foreground hover:text-primary-foreground transition-colors dark:text-slate-500" />
+            <LinkedinIcon className="h-6 w-6 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" />
           </Link>
           <Link
             href="https://x.com/adriankwann"
             aria-label="Twitter"
             prefetch={false}
           >
-            <TwitterIcon className="h-6 w-6 text-muted-foreground hover:text-primary-foreground transition-colors dark:text-slate-500" />
+            <TwitterIcon className="h-6 w-6 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" />
           </Link>
-          <div className="text-muted-foreground hover:text-primary-foreground transition-colors dark:text-slate-500">
+          <div className="text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors">
             By Adrian Kwan
           </div>
         </div>
@@ -27,9 +26,7 @@ export default function Footer() {
     </>
   );
 }
-
 function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
-  // Explicit type for props
   return (
     <svg
       {...props}
@@ -51,7 +48,6 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
-  // Explicit type for props
   return (
     <svg
       {...props}
