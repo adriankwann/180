@@ -40,7 +40,7 @@ const small_image_data = [
 const large_image_data = [
   {
     name: 'Emir',
-    image: '/final_proj1/emir_cropped.jpg',
+    image: '/final_proj1/emir_crop.jpg',
     displacements: [
       { type: 'Green', x: 21, y: 50 },
       { type: 'Red', x: 40, y: 105 },
