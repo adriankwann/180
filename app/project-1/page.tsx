@@ -372,7 +372,7 @@ export default function Project1() {
             <br></br>
             <p className="text-sm text-slate-500 dark:text-slate-300 text-left">
               I decided to use Canny edge detection with a gaussian blur as I
-              saw in the documentation of cv2.canny. However, I wasn't sure
+              saw in the documentation of cv2.canny. However, I wasn&apos;t sure
               exactly what to do with this.
             </p>
 
