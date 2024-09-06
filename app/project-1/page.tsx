@@ -13,7 +13,7 @@ import Footer from '@/components/ui/footer';
 const small_image_data = [
   {
     name: 'Monastery',
-    image: '/monastery.jpg',
+    image: '/final_proj1/monastery_crop.jpg',
     displacements: [
       { type: 'Green', x: 2, y: -3 },
       { type: 'Red', x: 2, y: 3 },
@@ -21,7 +21,7 @@ const small_image_data = [
   },
   {
     name: 'Tobolsk',
-    image: '/tobolsk.jpg',
+    image: '/final_proj1/tobolsk_crop.jpg',
     displacements: [
       { type: 'Green', x: 2, y: 3 },
       { type: 'Red', x: 3, y: 6 },
@@ -29,7 +29,7 @@ const small_image_data = [
   },
   {
     name: 'Cathedral',
-    image: '/cathedral.jpg',
+    image: '/final_proj1/cathedral_crop.jpg',
     displacements: [
       { type: 'Green', x: 2, y: 5 },
       { type: 'Red', x: 3, y: 12 },
@@ -37,11 +37,10 @@ const small_image_data = [
   },
 ];
 
-//TODO: Add large images
 const large_image_data = [
   {
     name: 'Emir',
-    image: '/emir.jpg',
+    image: '/final_proj1/emir_cropped.jpg',
     displacements: [
       { type: 'Green', x: 21, y: 50 },
       { type: 'Red', x: 40, y: 105 },
@@ -49,10 +48,86 @@ const large_image_data = [
   },
   {
     name: 'Church',
-    image: '/church.jpg',
+    image: '/final_proj1/church_crop.jpg',
     displacements: [
       { type: 'Green', x: 4, y: 25 },
       { type: 'Red', x: -4, y: 58 },
+    ],
+  },
+  {
+    name: 'Harvesters',
+    image: '/final_proj1/harvesters_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 14, y: 59 },
+      { type: 'Red', x: 11, y: 122 },
+    ],
+  },
+  {
+    name: 'Icon',
+    image: '/final_proj1/icon_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 16, y: 39 },
+      { type: 'Red', x: 23, y: 89 },
+    ],
+  },
+  {
+    name: 'Lady',
+    image: '/final_proj1/lady_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 8, y: 57 },
+      { type: 'Red', x: 12, y: 120 },
+    ],
+  },
+  {
+    name: 'Melons',
+    image: '/final_proj1/melons_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 10, y: 88 },
+      { type: 'Red', x: 12, y: 178 },
+    ],
+  },
+  {
+    name: 'Onion Church',
+    image: '/final_proj1/onion_church_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 23, y: 52 },
+      { type: 'Red', x: 35, y: 108 },
+    ],
+  },
+
+  {
+    name: 'Sculpture',
+    image: '/final_proj1/sculpture_crop.jpg',
+    displacements: [
+      { type: 'Green', x: -11, y: 33 },
+      { type: 'Red', x: -27, y: 140 },
+    ],
+  },
+
+  {
+    name: 'Self Portrait',
+    image: '/final_proj1/self_portrait_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 28, y: 78 },
+      { type: 'Red', x: 36, y: 175 },
+    ],
+  },
+
+  {
+    name: 'Three Generations',
+    image: '/final_proj1/3_gen_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 15, y: 57 },
+      { type: 'Red', x: 9, y: 112 },
+    ],
+  },
+
+  {
+    name: 'Train',
+    image: '/final_proj1/train_crop.jpg',
+    displacements: [
+      { type: 'Green', x: -2, y: 40 },
+      { type: 'Red', x: 29, y: 85 },
     ],
   },
 ];
@@ -280,6 +355,83 @@ export default function Project1() {
               increases. Hence, we need to decrease the search range to keep the
               runtime manageable.
             </p>
+
+            <h3 className="text-l font-semibold text-left text-black dark:text-white mt-4 mb-1">
+              Attempted Border Cropping
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left mb-0">
+              After computing the alignemnt and aligning the images, there are
+              several borders that can be cropped out. For example, the original
+              photos had black and white borders on the side of the images; in
+              addition, there now exists color borders as after we shift certain
+              channels, the edges may not be lined up anymore. Hence, I
+              attempted to resolve this by detecting these borders using edge
+              detection.
+            </p>
+            <br></br>
+            <p className="text-sm text-slate-500 dark:text-slate-300 text-left">
+              I decided to use Canny edge detection with a gaussian blur as I
+              saw in the documentation of cv2.canny. However, I wasn't sure
+              exactly what to do with this.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/edges.png"
+                  alt="Edge detected image"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 4: Harvesters, Canny Edges
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
+              I decided to use a naive approach. I first set a few thresholds
+              for where I would search for borders. For example, in order to
+              detect the left border, I set the x range to [0, im_size[0]//6], a
+              completely arbitrary number that I estimated. I did the same for
+              the right, top, and bottom ones.
+            </p>
+            <p className="text-sm mt-2 text-slate-500 dark:text-slate-300 text-left">
+              This allowed me to crop the white borders out; however, I was
+              unable to figure out a better way to crop out all borders. I
+              suspect that a more complicated algorithm was necessary for this
+              task, or it involves the use of some clever masking.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/harvesters.jpg"
+                  alt="No crop harvesters"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5: Harvesters, Original
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="/final_proj1/harvesters_crop.jpg"
+                  alt="Cropped harvesters"
+                  width={290}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 6: Harvesters, Cropped
+                </p>
+              </div>
+            </div>
           </div>
 
           <Separator />
