@@ -48,8 +48,11 @@ export const CardGrid: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center mb-5 mt-10">
-        <h2 className="text-2xl font-semibold text-center text-black dark:text-white">
+      <div data-aos="fade-up" className="flex flex-col items-center mb-5 mt-10">
+        <h2
+          className="text-2xl font-semibold text-center text-black dark:text-white"
+          data-aos="fade-up"
+        >
           Projects
         </h2>
       </div>
@@ -57,6 +60,7 @@ export const CardGrid: React.FC = () => {
       <div
         id="projects"
         className="container mx-auto px-6 md:px-10 lg:px-16 py-12"
+        data-aos="fade-up"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {cardsData.map((card) =>

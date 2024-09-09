@@ -130,6 +130,24 @@ const large_image_data = [
       { type: 'Red', x: 29, y: 85 },
     ],
   },
+
+  {
+    name: 'Simskaia Station',
+    image: '/final_proj1/simskaia_station_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 9, y: 67 },
+      { type: 'Red', x: 5, y: 141 },
+    ],
+  },
+
+  {
+    name: 'Viazovaia Station',
+    image: '/final_proj1/viazovaia_station_crop.jpg',
+    displacements: [
+      { type: 'Green', x: 19, y: 66 },
+      { type: 'Red', x: 16, y: 133 },
+    ],
+  },
 ];
 
 export default function Project1() {
@@ -457,6 +475,43 @@ export default function Project1() {
                 Large Images
               </h3>
               <Carousel_JPGS imageData={large_image_data} />
+            </div>
+          </div>
+
+          <p className="text-sm mt-10 text-slate-500 dark:text-slate-300 text-left">
+            I added two of my favorite photos in the collection, both depicting
+            the great Russian railways in the 1900s. The second photo, the
+            Viazovaia Station, may look misaligned; however, after consulting
+            the Library of Congress, I noticed they had a similar result.
+            Perhaps this was a slightly worse taken photo at the time due to
+            some environmental circumstances.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="/final_proj1/simskaia_station_crop.jpg"
+                alt="No crop harvesters"
+                width={300}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Figure 7: Simskaia Station
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="/final_proj1/viazovaia_station_crop.jpg"
+                alt="Cropped harvesters"
+                width={290}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Figure 8: Viazovaia Station
+              </p>
             </div>
           </div>
         </div>
