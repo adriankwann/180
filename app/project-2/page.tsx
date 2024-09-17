@@ -451,7 +451,7 @@ export default function Project2() {
               </Latex>
             </div>
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
-              Here's the result, using an alpha value of 5:
+              Here&apos;s the result, using an alpha value of 5:
             </p>
 
             <div className="flex justify-center gap-4 mt-8 mb-8">
