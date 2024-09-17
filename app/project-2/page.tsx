@@ -145,6 +145,16 @@ export default function Project2() {
                       Part 2.1: Image Sharpening
                     </ScrollLink>
                   </li>
+                  <li>
+                    <ScrollLink
+                      to="part2-section2"
+                      smooth={true}
+                      duration={500}
+                      className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                    >
+                      Part 2.2: Hybrid IMages
+                    </ScrollLink>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -399,6 +409,166 @@ export default function Project2() {
               make edge detection easier. In this section, we continue to
               explore the use cases of Gaussian filters, which seems to be
               endless!
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here is an image of the Taj Mahal that we&apos;re going to be
+              running experiments on:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/taj.jpg"
+                  alt="Taj Mahal"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.1: Original Taj Mahal Image
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              The Gaussian filter is also known as a low-pass filter, which only
+              retains the low frequencies. In order to sharpen an image, we need
+              to &apos;boost&apos; the high frequencies. Hence, we need to
+              derive a high-pass filter. By subtracting the blurred image from
+              the original image, we basically get rid of all low frequencies
+              and only retain the high frequencies; this is the high pass filter
+              we are looking for!
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              This is the equation we use (alpha is a scaling factor):
+            </p>
+
+            <div className="flex justify-center mt-4">
+              <Latex>
+                {`$$ \\text{Sharpened Image} = \\text{Original Image} + \\alpha \\cdot \\text{High Frequency Image} $$`}
+              </Latex>
+            </div>
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here's the result, using an alpha value of 5:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/sharp_taj.jpg"
+                  alt="Sharp Taj Mahal"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.2: Sharpened Taj Mahal, alpha=5
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              As you can see, the patterns and edges on the Taj Mahal are now
+              made more obvious. Here&apos;s another example of sharpening,
+              applied to a coastline image with a long exposure:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/nature.jpg',
+                description: 'Figure 2.3: Coastline Image',
+              }}
+              photo2={{
+                src: '/final_proj2/sharp_nature.jpg',
+                description: 'Figure 2.4: Sharpened Coastline',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here, the results aren&apos;t as obvious. I decided to use a
+              smaller alpha of 0.75 as I thought anything above that made the
+              image look worse. The obvious differences comes from the sharper
+              coastline edges in between the land and the sea. The rocks also
+              look more &apos;separted&apos; with the cracks and gaps being
+              enhanced too.
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              As evaluation, we can also first blur an image, and then sharpen
+              it again by using this technique. Here&apos;s an example of this
+              being applied to a photo of my hometown, Shanghai:
+            </p>
+
+            {/* triple photo - shanghai */}
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/shanghai.jpeg"
+                  alt="Original Shanghai Image"
+                  width={400}
+                  height={500}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.5: Shanghai Image
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/blurred_shanghai.jpg"
+                  alt="Original Shanghai Image"
+                  width={400}
+                  height={500}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.6: Shanghai, Blurred with ksize=25, sigma=5
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-4 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/resharped_shanghai.jpg"
+                  alt="Original Shanghai Image"
+                  width={400}
+                  height={500}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.7: Shanghai, Resharped with alpha=10, sigma=5
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              There&apos;s a few conclusions here. It is clear that the
+              resharped photo&apos;s quality is not as good as the original
+              photo, especially when one pays attention to the lights on the
+              skyscrapers; they now appear more rough. I also had to use a
+              higher alpha value as anything lower than 7.5 would still seem
+              relatively blurry. However, this still shows that the sharp
+              filtering works, even for a blurry photo!
+            </p>
+
+            <h3
+              id="part2-section2"
+              className="text-l font-semibold text-left text-black dark:text-white mt-4"
+            >
+              Part 2.2: Hybrid Images
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              In this section, we attempt to create hybrid images! Hybrid images
+              are static images that change in interpretation as a function of
+              the viewing distance. The basic idea is that high frequency
+              details tend to be more prominent when viewing an image from a
+              close distance; on the other hand, low frequencies tend to
+              dominate when viewing an image from a far distance.
             </p>
 
             {showButton && (
