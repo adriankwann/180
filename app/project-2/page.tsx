@@ -84,7 +84,7 @@ export default function Project2() {
               In this project, we explore ways to apply different filtering and
               masking techniques to images. Since this project contains a lot of
               information, I have included an index below that allows you to
-              skip to sections you're interested in!
+              skip to sections you&apos;re interested in!
             </p>
           </div>
 
