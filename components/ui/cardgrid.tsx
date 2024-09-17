@@ -16,7 +16,7 @@ export const CardGrid: React.FC = () => {
       id: '2',
       title: 'Project 2',
       image: '/final_proj2/hybrid_antony_messi.jpg',
-      description: 'Fun with Filters and Frequencies!',
+      description: 'Experimenting with Filters and Frequencies!',
       link: '/project-2',
     },
     {

@@ -25,7 +25,7 @@ export function CardComponent({ title, image, description, link }: CardProps) {
               <img
                 src={image}
                 alt={title}
-                className="w-full h-40 object-cover rounded-md"
+                className="w-full h-60 object-cover rounded-md"
               />
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">

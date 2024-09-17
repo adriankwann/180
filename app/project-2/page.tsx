@@ -150,6 +150,8 @@ export default function Project2() {
             </ul>
           </div>
 
+          <Separator />
+
           <div className="flex flex-col justify-center mb-4 mt-6">
             <h2
               id="part1"
