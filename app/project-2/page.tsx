@@ -155,6 +155,27 @@ export default function Project2() {
                       Part 2.2: Hybrid Images
                     </ScrollLink>
                   </li>
+                  <li>
+                    <ScrollLink
+                      to="part2-section3"
+                      smooth={true}
+                      duration={500}
+                      className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                    >
+                      Part 2.3: Gaussian and Laplacian Stacks
+                    </ScrollLink>
+                  </li>
+
+                  <li>
+                    <ScrollLink
+                      to="part2-section4"
+                      smooth={true}
+                      duration={500}
+                      className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                    >
+                      Part 2.4: Multiresolution Blending
+                    </ScrollLink>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -790,6 +811,217 @@ export default function Project2() {
                 </p>
               </div>
             </div>
+
+            <h3
+              id="part2-section3"
+              className="text-l font-semibold text-left text-black dark:text-white mt-4"
+            >
+              Part 2.3: Gaussian and Laplacian Stacks
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              In this section, we implement the Gaussian and Laplacian stacks we
+              will be using in the next section to blend images.
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here are the photos we are going to attempt to blend:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/apple.jpeg',
+
+                description: 'Figure 2.25: Apple',
+              }}
+              photo2={{
+                src: '/final_proj2/orange.jpeg',
+
+                description: 'Figure 2.26: Orange',
+              }}
+            />
+
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              The Gaussian stack we implemented here involves repeatedly
+              convolving a Gaussian Filter to an image. The Laplacian stack can
+              be derived by subtracting successive layers of the Gaussian stack.
+              This is essentially the process of repeatedly detecting high
+              frequency edges; however, as you progress through the levels of
+              the Laplacian stack, the frequency of the details being captured
+              becomes progressively lower. In other words, the higher levels of
+              the Laplacian stack capture finer details and sharp edges, while
+              the lower levels capture broader, more gradual changes in the
+              image. This makes the Laplacian stack particularly useful for
+              tasks such as image blending, where you want to combine images at
+              different scales, ensuring that both fine details and large-scale
+              structures blend smoothly. Here&apos;s a slightly more
+              mathematical explanation:
+            </p>
+
+            <Latex>
+              {`
+
+                \\[
+                L_i = G_i - G_{i+1}
+                \\]
+
+                \\[
+                L_N = G_N
+                \\]
+            `}
+            </Latex>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here&apos;s the Gaussian and Laplacian stacks applied to the
+              orange and apple images, respectively:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/orange_stack.png"
+                  alt="Orange stacks"
+                  width={700}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.27: Gaussian and Laplacian Stacks for Orange
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/apple_stack.png"
+                  alt="Apple stacks"
+                  width={700}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.28: Gaussian and Laplacian Stacks for Apple
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Now that we have the Laplacian Stacks for both images, we can
+              start blending! The rest of this section follows this paper by
+              Burt and Adelson, specifically on page 230:
+            </p>
+
+            <Link
+              href="https://persci.mit.edu/pub_pdfs/spline83.pdf"
+              className="self-center mt-3"
+            >
+              {' '}
+              {/* Added self-center and margin-top */}
+              <Button variant="link">Image Blending Paper</Button>
+            </Link>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Our Laplacian Stacks for the Orange and Apple are treated as LA
+              and LB. The only thing left we need to obtain is the GR, which the
+              paper outlines as "building a Gaussian pyramid GR for the region
+              image R." Note that the words pyramid and stack is used
+              interchangabily here, and region image is simply a fancier word
+              for mask. They claimed to have used a binary mask, where the
+              middle vertical is set to 0.5, everything on the left is set to 0,
+              and the right is set to 1. This is what that looks like:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/mask.jpg"
+                  alt="Oraple Mask"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.29: Original Mask for Oraple Blend
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Now we find GR by getting the Gaussian Stack of the mask:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/GR.png"
+                  alt="GR"
+                  width={700}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.30: GR, the Gaussian Stack of the mask
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Now we have our LA, LB, and GR - now we have to contruct a
+              combined pyramid, LS, which uses the nodes of GR as weights for
+              the Laplacians in LA and LB. We do this by:
+            </p>
+
+            <Latex>
+              {`
+                \\[
+                LS(i,j) = GR(i,j)LA(i,j) + (1 - GR(i,j))LB(i,j)
+                \\]
+            `}
+            </Latex>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/LS.png"
+                  alt="LS"
+                  width={700}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.31: LS, the combined pyramid
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              The last step is to combine everything in the combined pyramid
+              (LS) into one singular image by adding all elements together, then
+              normalizing the final image. This is what we get:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/oraple.jpg"
+                  alt="LS"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.32: Oraple
+                </p>
+              </div>
+            </div>
+
+            <h3
+              id="part2-section4"
+              className="text-l font-semibold text-left text-black dark:text-white mt-4"
+            >
+              Part 2.4: Multiresolution Blending
+            </h3>
 
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
