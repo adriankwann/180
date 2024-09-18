@@ -996,6 +996,57 @@ export default function Project2() {
             </div>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              We can also visualize the contributions from the apple and the
+              orange by taking a closer look at the masked images at each level,
+              just like what Szeliski did:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/level0_contributions.png"
+                  alt="LS"
+                  width={400}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.32: Level 0
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-4">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/level2_contributions.png"
+                  alt="LS"
+                  width={400}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.33: Level 2
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-4 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/level4_contributions.png"
+                  alt="LS"
+                  width={400}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.34: Level 4
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               The last step is to combine everything in the combined pyramid
               (LS) into one singular image by adding all elements together, then
               normalizing the final image. This is what we get:
