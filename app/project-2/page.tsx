@@ -713,7 +713,7 @@ export default function Project2() {
             />
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-center">
-              Here's the high frequency image of Antony and its FFT:
+              Here&apos;s the high frequency image of Antony and its FFT:
             </p>
 
             <DoublePhoto
