@@ -924,10 +924,10 @@ export default function Project2() {
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               Our Laplacian Stacks for the Orange and Apple are treated as LA
               and LB. The only thing left we need to obtain is the GR, which the
-              paper outlines as "building a Gaussian pyramid GR for the region
-              image R." Note that the words pyramid and stack is used
-              interchangabily here, and region image is simply a fancier word
-              for mask. They claimed to have used a binary mask, where the
+              paper outlines as &quot;building a Gaussian pyramid GR for the
+              region image R.&quot; Note that the words pyramid and stack is
+              used interchangabily here, and region image is simply a fancier
+              word for mask. They claimed to have used a binary mask, where the
               middle vertical is set to 0.5, everything on the left is set to 0,
               and the right is set to 1. This is what that looks like:
             </p>
