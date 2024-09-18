@@ -152,7 +152,7 @@ export default function Project2() {
                       duration={500}
                       className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
                     >
-                      Part 2.2: Hybrid IMages
+                      Part 2.2: Hybrid Images
                     </ScrollLink>
                   </li>
                 </ul>
@@ -570,6 +570,226 @@ export default function Project2() {
               close distance; on the other hand, low frequencies tend to
               dominate when viewing an image from a far distance.
             </p>
+
+            <Link
+              href="http://olivalab.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf"
+              className="self-center mt-3"
+            >
+              {' '}
+              {/* Added self-center and margin-top */}
+              <Button variant="link">Original SIGGRAPH Paper</Button>
+            </Link>
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Tanay and Etai (Failure)
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              The first thing I did was try to create a hybrid image of my
+              friends, Tanay and Etai. I thought by taking their LinkedIn
+              profile photos, I would have a relatively normalized image of
+              each. Here are the original photos:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/tanay.jpeg',
+                description: 'Figure 2.8: Tanay',
+              }}
+              photo2={{
+                src: '/final_proj2/etai.jpeg',
+                description: 'Figure 2.9: Etai',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              And the hybrid image...
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/hybrid_tanay_etai.jpg',
+                description: 'Figure 2.10: Tanay and Etai',
+              }}
+              photo2={{
+                src: '/final_proj2/hybrid_tanay_etai_color.jpg',
+                description: 'Figure 2.11: Tanay and Etai, with Color',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Perhaps it is due to the fact that LinkedIn headshots are only
+              200px*200px, but even with very large alpha values, I
+              couldn&apos;t get the high frequencies image of Etai to appear
+              more prominent. I decided to therefore start experimenting with
+              larger and more high quality images so hopefully the edges are
+              more well defined.
+            </p>
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Who&apos;s the GOAT?
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              It&apos;s gotta be Antony!
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/messi.jpg',
+                description: 'Figure 2.12: Messi',
+              }}
+              photo2={{
+                src: '/final_proj2/antony.jpg',
+                description: 'Figure 2.13: Antony',
+              }}
+              height={3}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              And the hybrid image...
+            </p>
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/hybrid_antony_messi.jpg"
+                  alt="Taj Mahal"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.14: Antony and Messi
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              As you can see, the high frequency image now is much more apparent
+              than the Tanay and Etai example. I was happy with the way this
+              turned out, so I decided to break this down further.
+            </p>
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Breakdown
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              In this subsection, we attempt to analyze the frequencies
+              associated with the original, filtered, and the hybrid image. We
+              do this by visualizing the 2D Fourier Transformations of the
+              Images.
+            </p>
+
+            <p className="text-sm mt-4 text-slate-500 dark:text-slate-300 text-center">
+              Here are the original image FFTs, after converting images to
+              grayscale:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/antony_gray_fft.jpg',
+                description: 'Figure 2.15: Original Antony, Gray Scale, FFT',
+              }}
+              photo2={{
+                src: '/final_proj2/messi_gray_fft.jpg',
+                description: 'Figure 2.16: Original Messi, Gray Scale, FFT',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-center">
+              Here&apos;s the low frequency image of Messi and its FFT:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/low_freq_messi.jpg',
+                description: 'Figure 2.17: Low Frequency Messi',
+              }}
+              photo2={{
+                src: '/final_proj2/low_freq_messi_fft.jpg',
+                description: 'Figure 2.18: Low Frequency Messi, FFT',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-center">
+              Here's the high frequency image of Antony and its FFT:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/high_freq_antony.jpg',
+                description: 'Figure 2.19: High Frequency Antony',
+              }}
+              photo2={{
+                src: '/final_proj2/high_freq_antony_fft.jpg',
+                description: 'Figure 2.20: High Frequency Antony, FFT',
+              }}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-center">
+              And finally, the hybrid image and its FFT:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/hybrid_antony_messi.jpg',
+                description: 'Figure 2.14: Antony and Messi',
+              }}
+              photo2={{
+                src: '/final_proj2/hybrid_antony_messi_fft.jpg',
+                description: 'Figure 2.21: Antony and Messi, FFT',
+              }}
+            />
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Do I have the nuts?
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Everyone knows 2-7o is the worst hand in poker. But when we play
+              the 2-7o, everyone plays them like aces. So is 2-7o the same as
+              aces?
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              For my last two hybrid images, I used photos with different
+              backgrounds. I decided for the last hybrid photo I wanted to see
+              how a constant environment would affect the image. Here are the
+              original images I took:
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: '/final_proj2/two_seven.jpg',
+                description: 'Figure 2.22: 2-7 Off Suit',
+              }}
+              photo2={{
+                src: '/final_proj2/aces.jpg',
+                description: 'Figure 2.23: Aces',
+              }}
+              height={3}
+            />
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              And the hybrid image (skio.imread was weird where it automatically
+              rotated the image):
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj2/hybrid_cards.jpg"
+                  alt="Hybrid Cards"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.24: Hybrid Cards
+                </p>
+              </div>
+            </div>
 
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
