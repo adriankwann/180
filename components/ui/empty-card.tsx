@@ -20,11 +20,12 @@ export default function EmptyCard({ title, description }: CardProps) {
         <CardContent>
           {/* Render a skeleton for the content */}
           <Skeleton className="h-40 w-full mb-2" />
-          <Skeleton className="h-4 w-full mb-2" />
+          <Skeleton className="h-20 w-full mb-2" />
+          <Skeleton className="h-6 w-full mb-2" />
           {/* <Skeleton className="h-4 w-3/4" /> */}
-          <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">
+          {/* <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">
             {description}
-          </p>
+          </p> */}
         </CardContent>
       </Card>
     </motion.div>

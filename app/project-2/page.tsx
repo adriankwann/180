@@ -1062,7 +1062,7 @@ export default function Project2() {
                   className="rounded-md"
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                  Figure 2.32: Oraple
+                  Figure 2.35: Oraple
                 </p>
               </div>
             </div>
