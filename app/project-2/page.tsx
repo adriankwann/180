@@ -906,6 +906,13 @@ export default function Project2() {
               </div>
             </div>
 
+            <h3
+              id="part2-section4"
+              className="text-l font-semibold text-left text-black dark:text-white mt-4"
+            >
+              Part 2.4: Multiresolution Blending
+            </h3>
+
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               Now that we have the Laplacian Stacks for both images, we can
               start blending! The rest of this section follows this paper by
@@ -1067,12 +1074,199 @@ export default function Project2() {
               </div>
             </div>
 
-            <h3
-              id="part2-section4"
-              className="text-l font-semibold text-left text-black dark:text-white mt-4"
-            >
-              Part 2.4: Multiresolution Blending
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Now let&apos;s start using other images!
+            </p>
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              The Eiffel Tower
             </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              There are a lot of Eiffel Tower replicas around the world. Since
+              earlier on I thought 2-7o was aces with the hybrid photo, I
+              thought I would choose Las Vegas's Eiffel Tower Replica, situated
+              at the Paris Hotel.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/paris_eiffel.jpg"
+                  alt="Eiffel Tower"
+                  width={300} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                  objectFit="cover" // This will crop the image to fit within the dimensions
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.36: Eiffel Tower
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/vegas_eiffel.jpg"
+                  alt="Las Vegas Eiffel Dupe"
+                  width={300} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                  objectFit="cover" // This will crop the image to fit within the dimensions
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.37: Vegas' Eiffel Tower Replica
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Unlike the orange and the apple photos which were normalized in
+              terms of size, it's clear that these two photos are not aligned
+              and are not the same size. Hence, I decided to align the photos by
+              the same function used in part 1.
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Now, just like before, let's compute our Gaussian and Laplacian
+              Stacks/Pyramids for both images:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/gaussian_eiffel_paris.png"
+                  alt="Gaussian Eiffel Tower"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.38: Paris Eiffel Tower, Gaussian/Laplacian Stacks
+                </p>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/gaussian_eiffel_vegas.png"
+                  alt="Gaussian Eiffel Tower Vegas"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.39: Vegas Eiffel Tower, Gaussian/Laplacian Stacks
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-row-reverse justify-center items-start gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/eiffel_mask.jpg"
+                  alt="Gaussian Eiffel Tower Mask"
+                  width={200} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.40: Mask used for Eiffel Tower
+                </p>
+              </div>
+
+              <div className="flex-1">
+                {/* Wrap text and image in a div for alignment */}
+                <div className="text-center">
+                  <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+                    I decided to use a vertical mask instead of a horizontal one
+                    (like the one used on the oraple). This is because I thought
+                    it might blend in better as the backgrounds of both images
+                    are quite different, until the skies. The mask I used is
+                    displayed on the right here.
+                  </p>
+
+                  {/* Add the new image below the text and center it */}
+                  <Image
+                    src="final_proj2/level0eiffel.png" // Replace with the correct image path
+                    alt="Combined Eiffel Tower Result"
+                    width={400} // Adjust width and height as needed
+                    height={300}
+                    className="rounded-md mt-5 mx-auto" // Ensure image is centered
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    Figure 2.41: Level 0, Laplacian Stack
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/level2eiffel.png"
+                  alt="Gaussian Eiffel Tower Vegas"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.42: Level 2, Laplacian Stack
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/level4eiffel.png"
+                  alt="Gaussian Eiffel Tower Vegas"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.43: Level 4, Laplacian Stack
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              Here&apos;s the combined pyramid, using both Laplacian stacks.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/LS_eiffel.png"
+                  alt="Gaussian Eiffel Tower Vegas"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.44: Combined Pyramid for Eiffel Tower
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              Finally, here&apos;s the final result after cropping!
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/eiffel.jpg"
+                  alt="Gaussian Eiffel Tower Vegas"
+                  width={300} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.45: Blended Eiffel Tower
+                </p>
+              </div>
+            </div>
 
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
