@@ -1278,7 +1278,7 @@ export default function Project2() {
             </div>
 
             <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
-              Mario Kart in Spa
+              Mario Kart and Eau Rouge
             </h3>
 
             <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
@@ -1313,7 +1313,7 @@ export default function Project2() {
             <DoublePhoto
               photo1={{
                 src: 'final_proj2/padded_peel.jpg',
-                description: 'Figure 2.48: Padded Banana Peel',
+                description: 'Figure 2.48: Padded and Resized Banana Peel',
               }}
               photo2={{
                 src: 'final_proj2/eau_rouge_mask.jpg',
@@ -1344,6 +1344,17 @@ export default function Project2() {
                 </p>
               </div>
             </div>
+
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Conclusion
+            </h3>
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              Hope you enjoyed reading through this project! It was very
+              enjoyable on my side to complete; my personal favorite were the
+              multiresolution blending photos are they required some creativity
+              to come up with good ideas.
+            </p>
 
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
