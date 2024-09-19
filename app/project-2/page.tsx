@@ -1277,6 +1277,10 @@ export default function Project2() {
               </div>
             </div>
 
+            <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
+              Something Else
+            </h3>
+
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
                 <ScrollLink to="top" smooth={true} duration={500}>
