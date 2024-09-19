@@ -247,7 +247,16 @@ export default function Project2() {
                 derivative in x and y of the image.
               </li>
               <li className="text-sm mt-2 text-slate-500 dark:text-slate-300">
-                Compute the gradient magnitude image.
+                Compute the gradient magnitude image by calculating the
+                Euclidean distance of the partial derivatives of the image. This
+                approach is used because the gradient magnitude represents the
+                intensity of change in pixel values across the image. By taking
+                the Euclidean distance (or the square root of the sum of
+                squares) between the partial derivatives in the x and y
+                directions, we can effectively measure how much the pixel values
+                change in a given region of the image. This gives us a clear
+                representation of areas with strong intensity changes, such as
+                edges or boundaries - which is what we want!
               </li>
               <li className="text-sm mt-2 text-slate-500 dark:text-slate-300">
                 Binarize the gradient magnitude image by selecting an
@@ -1195,7 +1204,7 @@ export default function Project2() {
                     className="rounded-md mt-5 mx-auto" // Ensure image is centered
                   />
                   <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                    Figure 2.41: Level 0, Laplacian Stack
+                    Figure 2.41: Level 0, Laplacian Stack for Eiffel Tower
                   </p>
                 </div>
               </div>
@@ -1211,7 +1220,7 @@ export default function Project2() {
                   className="rounded-md"
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                  Figure 2.42: Level 2, Laplacian Stack
+                  Figure 2.42: Level 2, Laplacian Stack for Eiffel Tower
                 </p>
               </div>
             </div>
@@ -1225,7 +1234,7 @@ export default function Project2() {
                   className="rounded-md"
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                  Figure 2.43: Level 4, Laplacian Stack
+                  Figure 2.43: Level 4, Laplacian Stack for Eiffel Tower
                 </p>
               </div>
             </div>
