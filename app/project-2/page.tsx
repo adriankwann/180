@@ -1085,8 +1085,8 @@ export default function Project2() {
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               There are a lot of Eiffel Tower replicas around the world. Since
               earlier on I thought 2-7o was aces with the hybrid photo, I
-              thought I would choose Las Vegas's Eiffel Tower Replica, situated
-              at the Paris Hotel.
+              thought I would choose Las Vegas&apos;s Eiffel Tower Replica,
+              situated at the Paris Hotel.
             </p>
 
             <div className="flex justify-center gap-4 mt-8 mb-8">
@@ -1114,21 +1114,21 @@ export default function Project2() {
                   objectFit="cover" // This will crop the image to fit within the dimensions
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                  Figure 2.37: Vegas' Eiffel Tower Replica
+                  Figure 2.37: Vegas&apos; Eiffel Tower Replica
                 </p>
               </div>
             </div>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               Unlike the orange and the apple photos which were normalized in
-              terms of size, it's clear that these two photos are not aligned
-              and are not the same size. Hence, I decided to align the photos by
-              the same function used in part 1.
+              terms of size, it&apos;s clear that these two photos are not
+              aligned and are not the same size. Hence, I decided to align the
+              photos by the same function used in part 1.
             </p>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
-              Now, just like before, let's compute our Gaussian and Laplacian
-              Stacks/Pyramids for both images:
+              Now, just like before, let&apos;s compute our Gaussian and
+              Laplacian Stacks/Pyramids for both images:
             </p>
 
             <div className="flex justify-center gap-4 mt-8 mb-8">
