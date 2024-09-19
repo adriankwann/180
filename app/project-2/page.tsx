@@ -1278,8 +1278,72 @@ export default function Project2() {
             </div>
 
             <h3 className="text-sm font-semibold text-left text-black dark:text-white mt-4">
-              Something Else
+              Mario Kart in Spa
             </h3>
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              What if Spa was in Mario Kart? Imagine hitting a banana peel
+              during Eau Rouge and Raidillon!
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: 'final_proj2/eau_rouge.jpg',
+                description: 'Figure 2.46: Eau Rouge, Spa Francorchamps',
+              }}
+              photo2={{
+                src: 'final_proj2/bananapeel.jpg',
+                description: 'Figure 2.47: Banana Peel',
+              }}
+              width={400} // Set fixed width
+              height={300} // Set fixed height
+            />
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              These two images are very different in size. I also wanted to make
+              the banana peel smaller. Hence, instead of using align_images like
+              before, I aligned them using a custom method. I first downsized
+              the banana peel to a 300*200 image. Then, I added padding to all
+              four sides such that the peel was roughly on the bottom middle
+              right of the photo. I also made sure to pad the image with the
+              same color as the original background, due to masking reasons
+              later.
+            </p>
+
+            <DoublePhoto
+              photo1={{
+                src: 'final_proj2/padded_peel.jpg',
+                description: 'Figure 2.48: Padded Banana Peel',
+              }}
+              photo2={{
+                src: 'final_proj2/eau_rouge_mask.jpg',
+                description: 'Figure 2.49: Mask for Banana Peel',
+              }}
+              width={400} // Set fixed width
+              height={300} // Set fixed height
+            />
+
+            <p className="text-sm mt-3 mr-3 text-slate-500 dark:text-slate-300 text-left">
+              I used cv2.threshold to edge detect and create a mask around the
+              banana peel. I fiddled with the threshold a bit; though it
+              wasn&apos;t perfect, I thought it was good enough for this use
+              case. Here&apos;s the final image, time to go racing!
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj2/blended_eau_rouge_peel.jpg"
+                  alt="Eau Rouge Banana"
+                  width={700} // Set fixed width
+                  height={200} // Set fixed height
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 2.50: Blended Eau Rouge and Banana Peel
+                </p>
+              </div>
+            </div>
 
             {showButton && (
               <Button variant="default" className="fixed bottom-4 right-4">
