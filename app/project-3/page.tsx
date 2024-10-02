@@ -393,6 +393,154 @@ export default function Project1() {
                 </p>
               </div>
             </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here is the average face of the population:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="/final_proj3/avg_dane_face.jpg"
+                  alt="Morphing"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 4.7: Average Dane Face
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              In order to comppute my face warped into the average Dane face
+              shape and vice versa, I labelled my image the same way that the
+              Danes dataset did. My original image was also too small; hence, I
+              used a larger image so that I can crop to the same dimensions as
+              the Danes dataset.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/me_hk.jpg"
+                  alt="me in hk"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 4.8: Me, again
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/dane_warped_into_me.jpg"
+                  alt="Dane warped into me"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 4.9: Average Dane, warped into my geometry
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/me_warped_into_dane.jpg"
+                  alt="Me warped into dane"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 4.10: Me warped into the Average Dane Shape
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              No surprises here: I am definitely not Danish.
+            </p>
+
+            <div className="flex flex-col justify-center mb-4 mt-6">
+              <h2
+                id="part1"
+                className="text-2xl font-semibold text-left text-black dark:text-white"
+              >
+                Part 5. Caricatures: Extrapolating from the mean
+              </h2>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              In this section, I will attempt to extrapolate features from the
+              average Dane's face to create a Caricature of myself. I will be
+              using the same image as above.
+            </p>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              To do this, I will first find the difference between my point set
+              and the average dane's point set. I then define alpha as a scalar,
+              where as alpha increases, I will add more of the extrapolation to
+              my original image.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Latex>{`diff = my\_pts - avg\_dane\_pts`}</Latex>
+              </div>
+              <div className="flex-none">
+                <Latex>{`caricature\_pts = my\_pts + \alpha * diff`}</Latex>
+              </div>
+            </div>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here are the results:
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/caricature_face_neg_0.5.jpg"
+                  alt="me in hk"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.1: alpha=-0.5
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/caricature_face_0.3.jpg"
+                  alt="Dane warped into me"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.2: alpha=0.3
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="final_proj3/caricature_face_0.5.jpg"
+                  alt="alpha=0.5"
+                  width={300}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.3: alpha=0.5
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
