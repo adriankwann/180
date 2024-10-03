@@ -590,7 +590,7 @@ export default function Project1() {
           <div className="flex justify-center gap-4 mt-8 mb-8">
             <div className="flex-none">
               <Image
-                src="https://ak-cs180.s3.us-east-2.amazonaws.com/friends_loop.gif"
+                src="/final_proj3/friends_loop.gif"
                 alt="Friend morphing"
                 width={300}
                 height={200}
