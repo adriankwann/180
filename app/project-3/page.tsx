@@ -543,6 +543,76 @@ export default function Project1() {
               </div>
             </div>
           </div>
+          <h2
+            id="part1"
+            className="text-2xl font-semibold text-left text-black dark:text-white"
+          >
+            Part 6. Bells and Whistles
+          </h2>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            For this section, I decided to do a morphing between my friends. I
+            first labelled each image with the correspondence tool, using the
+            same method as the Danes dataset. Here are my friend's photos:
+          </p>
+
+          <DoublePhoto
+            photo1={{
+              src: 'final_proj3/ethan.jpg',
+              description: 'Figure 6.1: Ethan',
+            }}
+            photo2={{
+              src: 'final_proj3/rahil.jpg',
+              description: 'Figure 6.2: Rahil',
+            }}
+          />
+
+          <DoublePhoto
+            photo1={{
+              src: 'final_proj3/drew.jpg',
+              description: 'Figure 6.3: Drew',
+            }}
+            photo2={{
+              src: 'final_proj3/max.jpg',
+              description: 'Figure 6.4: Max',
+            }}
+          />
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            I then ran my morph code between each pair, adding a few constant
+            frames in the middle.
+          </p>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Here is the end result:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/friends_loop.gif"
+                alt="Friend morphing"
+                width={300}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Figure 6.5: Morphing between my friends
+              </p>
+            </div>
+          </div>
+
+          <h2
+            id="part1"
+            className="text-2xl font-semibold text-left text-black dark:text-white"
+          >
+            Conclusion
+          </h2>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            That marks the end of this project - I hope you enjoyed reading
+            through it!
+          </p>
         </div>
       </div>
 
