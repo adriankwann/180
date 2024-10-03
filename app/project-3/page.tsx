@@ -553,7 +553,7 @@ export default function Project1() {
           <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
             For this section, I decided to do a morphing between my friends. I
             first labelled each image with the correspondence tool, using the
-            same method as the Danes dataset. Here are my friend's photos:
+            same method as the Danes dataset. Here are my friend&apos;s photos:
           </p>
 
           <DoublePhoto

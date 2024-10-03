@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ArrowUpDown, LoaderCircle, Filter } from 'lucide-react';
+import { ArrowUpDown, LoaderCircle, Filter, ScanFace } from 'lucide-react';
 
 export function NavDropDown() {
   return (
@@ -31,12 +31,14 @@ export function NavDropDown() {
         </DropdownMenuItem>
 
         {/* Disabled Projects */}
-        <DropdownMenuItem asChild disabled title="Work in progress">
+        <DropdownMenuItem asChild>
           <Link href="/project-3">
-            <LoaderCircle className="mr-2 h-4 w-4" />
-            <span>Project 3: TBD</span>
+            <ScanFace className="mr-2 h-4 w-4" />
+            <span>Project 3: Face Morphing</span>
           </Link>
         </DropdownMenuItem>
+
+        {/* Disabled Projects */}
         <DropdownMenuItem asChild disabled title="Work in progress">
           <Link href="/project-4">
             <LoaderCircle className="mr-2 h-4 w-4" />
