@@ -22,7 +22,7 @@ export const CardGrid: React.FC = () => {
     {
       id: '3',
       title: 'Project 3',
-      image: '/final_proj3friends_loop.gif',
+      image: '/final_proj3/friends_loop.gif',
       description: 'Morphing my friends!',
       link: '/project-3',
     },
