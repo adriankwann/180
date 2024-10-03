@@ -67,7 +67,7 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               In this project, we aim to produce animations of a face morphing
-              between my face and someone else's face. We also compute the
+              between my face and someone else&apos;s face. We also compute the
               population mean of faces, as well as extrapolating features to
               create a caricature of myself.
             </p>
@@ -88,17 +88,17 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               Growing up, I was always told that I looked very similar to my
-              mom. Now that I've grown, I personally think the resemblence has
-              faded a bit. Time to see whether of not this is true!
+              mom. Now that I&apos;ve grown, I personally think the resemblence
+              has faded a bit. Time to see whether of not this is true!
             </p>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               For this project, I decided to start with the morphing of my face
-              to my mother's. I deliberately chose passport photos as they have
-              the same background and dimensions, which would make it easier to
-              morph. In addition, I was curious about how smiles could affect
-              morphing, so I chose a photo of me not smiling, and a photo of my
-              mother smilling.
+              to my mother&apos;s. I deliberately chose passport photos as they
+              have the same background and dimensions, which would make it
+              easier to morph. In addition, I was curious about how smiles could
+              affect morphing, so I chose a photo of me not smiling, and a photo
+              of my mother smilling.
             </p>
 
             <DoublePhoto
@@ -116,10 +116,11 @@ export default function Project1() {
               I initially defined around 32 keypoints for each image, using teh
               correspondence tool. However, after proceeding to the end of this
               project, I decided to use the same keypoint labelling technique as
-              used in the Danes dataset (which I'll show later on). The reason
-              for this is because I believe it yields a better result. Hence, I
-              labelled 58 points for each photo. I then added the four corners
-              such that the Delauney triangle can still be computed correctly.
+              used in the Danes dataset (which I&apos;ll show later on). The
+              reason for this is because I believe it yields a better result.
+              Hence, I labelled 58 points for each photo. I then added the four
+              corners such that the Delauney triangle can still be computed
+              correctly.
             </p>
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               Finally, I found the mean point set, and then computed the
@@ -143,7 +144,7 @@ export default function Project1() {
               id="part1"
               className="text-2xl font-semibold text-left text-black dark:text-white"
             >
-              Part 2. Computing the "Mid-way Face"
+              Part 2. Computing the &quot;Mid-way Face&quot;
             </h2>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
@@ -177,8 +178,8 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               To compute the average shape, we simply take the mean point set of
-              my mom and I's points. The good news is we've already computed
-              this in the previous step!
+              my mom and I&apos;s points. The good news is we&apos;ve already
+              computed this in the previous step!
             </p>
 
             <h3 className="text-xl font-semibold text-left text-black dark:text-white mt-5">
@@ -215,8 +216,8 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               For each average triangle, we have a point set in my image as well
-              as my mom's image to then interpolate. We are then ready for the
-              final step!
+              as my mom&apos;s image to then interpolate. We are then ready for
+              the final step!
             </p>
             <h3 className="text-xl font-semibold text-left text-black dark:text-white mt-5">
               Cross Dissolve
@@ -224,8 +225,8 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               To do this, we interpolate the pixel values from my photo as well
-              as my mom's photo for each color channel. We can then average them
-              to compute the midway face.
+              as my mom&apos;s photo for each color channel. We can then average
+              them to compute the midway face.
             </p>
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
@@ -299,7 +300,7 @@ export default function Project1() {
               id="part1"
               className="text-2xl font-semibold text-left text-black dark:text-white"
             >
-              Part 4. The "Mean face" of a population
+              Part 4. The &quot;Mean face&quot; of a population
             </h2>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
@@ -353,10 +354,10 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               The dataset contained relative coordinates. We first scale these
-              relative coordinates with respect to the image's height and width
-              to find the coordinate locations for key points. After doing so,
-              we then compute the average shape of all danes by finding the mean
-              point set.
+              relative coordinates with respect to the image&apos;s height and
+              width to find the coordinate locations for key points. After doing
+              so, we then compute the average shape of all danes by finding the
+              mean point set.
             </p>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
@@ -477,15 +478,15 @@ export default function Project1() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               In this section, I will attempt to extrapolate features from the
-              average Dane's face to create a Caricature of myself. I will be
-              using the same image as above.
+              average Dane&apos;s face to create a Caricature of myself. I will
+              be using the same image as above.
             </p>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               To do this, I will first find the difference between my point set
-              and the average dane's point set. I then define alpha as a scalar,
-              where as alpha increases, I will add more of the extrapolation to
-              my original image.
+              and the average dane&apos;s point set. I then define alpha as a
+              scalar, where as alpha increases, I will add more of the
+              extrapolation to my original image.
             </p>
 
             <div className="flex justify-center gap-4 mt-8 mb-8">
