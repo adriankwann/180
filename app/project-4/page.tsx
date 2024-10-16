@@ -87,8 +87,8 @@ export default function Project4() {
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
               I took these photos around a month and a half ago having seen this
-              project ahead of time. I didn't exactly know how to shoot them
-              properly (by really concentrating on fixing the center of
+              project ahead of time. I didn&apos;t exactly know how to shoot
+              them properly (by really concentrating on fixing the center of
               projection); however, the results still look good as it is a
               relatively non-detailed mosaic. I believe it serves are a good
               introduction to this project.
@@ -166,7 +166,7 @@ export default function Project4() {
               of the transformation) between each pair of images. In order to do
               so, the first step is to manually label correspondences between
               each pair of images. I did this using the correspondence tool.
-              Here's an example of a labelled image:
+              Here&apos;s an example of a labelled image:
             </p>
 
             <div className="flex justify-center gap-4 mt-8 mb-8">
@@ -187,7 +187,7 @@ export default function Project4() {
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
               For the Stinson Beach example, the correspondences were quite
               difficult to label as the images were relatively dark with minimal
-              detail. However, we're not ready to solve for H.
+              detail. However, we&apos;re not ready to solve for H.
             </p>
 
             <Latex>
@@ -280,7 +280,7 @@ export default function Project4() {
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
               Given that we have 8 unknowns, we only need 4 correspondences to
               solve the equation sufficiently. However, in practice, this causes
-              issues as there isn't enough information 4 points can encode.
+              issues as there isn&apos;t enough information 4 points can encode.
               Hence, we aim to label more points (~10), and use a minimum norm
               least squares solver to approximate each missing value.
             </p>
@@ -387,7 +387,7 @@ export default function Project4() {
             />
 
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              We're now ready to start building mosaics!
+              We&apos;re now ready to start building mosaics!
             </p>
           </div>
 
