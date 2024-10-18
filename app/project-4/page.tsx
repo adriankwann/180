@@ -10,34 +10,6 @@ import Footer from '@/components/ui/footer';
 import Latex from 'react-latex-next';
 import 'katex/dist/katex.min.css';
 import DoublePhoto from '@/components/ui/double_photo';
-import { motion } from 'framer-motion';
-
-const rotateVariants = {
-  hidden: { rotate: -10, opacity: 0 },
-  show: {
-    rotate: 0,
-    opacity: 1,
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-};
-
-const rotateVariants2 = {
-  hidden: { rotate: 10, opacity: 0 },
-  show: {
-    rotate: 0,
-    opacity: 1,
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-};
-
-const slideInVariants = (direction = 'left') => ({
-  hidden: { x: direction === 'left' ? -100 : 100, opacity: 0 },
-  show: {
-    x: 0,
-    opacity: 1,
-    transition: { duration: 0.8, ease: 'easeOut' },
-  },
-});
 
 export default function Project4() {
   const [loading, setLoading] = useState(true);
@@ -395,34 +367,27 @@ export default function Project4() {
               Here are two examples:
             </p>
 
-            <motion.div
-              variants={rotateVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <DoublePhoto
-                photo1={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
-                  description: 'Figure 4.1: TV',
-                }}
-                photo2={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
-                  description: 'Figure 4.2: Rectified TV',
-                }}
-              />
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
+                description: 'Figure 4.1: TV',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
+                description: 'Figure 4.2: Rectified TV',
+              }}
+            />
 
-              <DoublePhoto
-                photo1={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
-                  description: 'Figure 4.3: EDC Box',
-                }}
-                photo2={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
-                  description: 'Figure 4.4: Rectified EDC Box',
-                }}
-              />
-            </motion.div>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
+                description: 'Figure 4.3: EDC Box',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
+                description: 'Figure 4.4: Rectified EDC Box',
+              }}
+            />
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
               We&apos;re now ready to start building mosaics!
             </p>
@@ -448,46 +413,38 @@ export default function Project4() {
               example of that:
             </p>
 
-            <motion.div
-              variants={rotateVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <DoublePhoto
-                photo1={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/warped_left.jpg',
-                  description:
-                    'Figure 5.1: Warped Left Image onto Center Image',
-                }}
-                photo2={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_left.jpg',
-                  description: 'Figure 5.2: Mask for the Warped Left Image',
-                }}
-              />
-              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                I then generated a blend/feathered mask for each of the original
-                masks. This is done by using bwdist, which computes the distance
-                transform of each mask. For areas where there is no overlap
-                between the masks, we simply set the blend mask to 1. For areas
-                where there exists an overlap, we use the distance transform to
-                create a gradient such that the blending will be smooth.
-                Here&apos;s an example of that:
-              </p>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/warped_left.jpg',
+                description: 'Figure 5.1: Warped Left Image onto Center Image',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_left.jpg',
+                description: 'Figure 5.2: Mask for the Warped Left Image',
+              }}
+            />
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              I then generated a blend/feathered mask for each of the original
+              masks. This is done by using bwdist, which computes the distance
+              transform of each mask. For areas where there is no overlap
+              between the masks, we simply set the blend mask to 1. For areas
+              where there exists an overlap, we use the distance transform to
+              create a gradient such that the blending will be smooth.
+              Here&apos;s an example of that:
+            </p>
 
-              <DoublePhoto
-                photo1={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_l.jpg',
-                  description:
-                    'Figure 5.3: Bwdist Mask for the Warped Left Image',
-                }}
-                photo2={{
-                  src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_m.jpg',
-                  description:
-                    'Figure 5.4: Bwdist Mask for the Non-Warped Center Image',
-                }}
-              />
-            </motion.div>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_l.jpg',
+                description:
+                  'Figure 5.3: Bwdist Mask for the Warped Left Image',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_m.jpg',
+                description:
+                  'Figure 5.4: Bwdist Mask for the Non-Warped Center Image',
+              }}
+            />
 
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
               Finally, I used these masks to blend the warped image onto the
@@ -497,27 +454,20 @@ export default function Project4() {
             <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
               Mosaic 1: Stinson Beach
             </h3>
-            <motion.div
-              variants={slideInVariants('right')}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <div className="flex justify-center gap-4 mt-8 mb-8">
-                <div className="flex-none">
-                  <Image
-                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach.jpg"
-                    alt="Stinson Beach Mosaic"
-                    width={600}
-                    height={200}
-                    className="rounded-md"
-                  />
-                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                    Figure 5.5: Stinson Beach Mosaic
-                  </p>
-                </div>
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach.jpg"
+                  alt="Stinson Beach Mosaic"
+                  width={600}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.5: Stinson Beach Mosaic
+                </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
