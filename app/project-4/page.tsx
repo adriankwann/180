@@ -320,127 +320,116 @@ export default function Project4() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className="mb-4"
+            className="flex flex-col justify-center mb-4 mt-6"
           >
-            <div className="flex flex-col justify-center mb-4 mt-6">
-              <h2
-                id="part1"
-                className="text-xl font-semibold text-left text-black dark:text-white"
-              >
-                Part 3. Warping the Images.
-              </h2>
-              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            <h2
+              id="part1"
+              className="text-xl font-semibold text-left text-black dark:text-white"
+            >
+              Part 3. Warping the Images.
+            </h2>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              {' '}
+              In this section, we take the homographies calculated from the
+              previous section and use them to warp images. The process involves
+              a few key steps:{' '}
+            </p>{' '}
+            <ol className="text-sm mt-1 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              {' '}
+              <li>
                 {' '}
-                In this section, we take the homographies calculated from the
-                previous section and use them to warp images. The process
-                involves a few key steps:{' '}
-              </p>{' '}
-              <ol className="text-sm mt-1 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  {' '}
+                  1. First, we calculate the bounding box of the output (warped)
+                  image by applying the homography matrix H to the corners of
+                  the original image. This defines the area where interpolation
+                  will occur.{' '}
+                </p>{' '}
+              </li>{' '}
+              <li>
                 {' '}
-                <li>
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
                   {' '}
-                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                    {' '}
-                    1. First, we calculate the bounding box of the output
-                    (warped) image by applying the homography matrix H to the
-                    corners of the original image. This defines the area where
-                    interpolation will occur.{' '}
-                  </p>{' '}
-                </li>{' '}
-                <li>
+                  2. Next, we use inverse warping to find the corresponding
+                  coordinates in the input image for each pixel in the output
+                  image, applying the inverse of the homography matrix H_inv.
+                </p>{' '}
+              </li>{' '}
+              <li>
+                {' '}
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
                   {' '}
-                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                    {' '}
-                    2. Next, we use inverse warping to find the corresponding
-                    coordinates in the input image for each pixel in the output
-                    image, applying the inverse of the homography matrix H_inv.
-                  </p>{' '}
-                </li>{' '}
-                <li>
-                  {' '}
-                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                    {' '}
-                    3. Finally, since the mapped coordinates are often decimal
-                    values, we apply linear interpolation to estimate the pixel
-                    values in the output image by combining the surrounding
-                    pixel information from the input image.{' '}
-                  </p>{' '}
-                </li>{' '}
-              </ol>
-            </div>
+                  3. Finally, since the mapped coordinates are often decimal
+                  values, we apply linear interpolation to estimate the pixel
+                  values in the output image by combining the surrounding pixel
+                  information from the input image.{' '}
+                </p>{' '}
+              </li>{' '}
+            </ol>
           </motion.div>
           <motion.div
             variants={slideInVariants('right')}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
+            className="flex flex-col justify-center mb-4 mt-6"
           >
-            <div className="flex flex-col justify-center mb-4 mt-6">
-              <motion.div {...fadeInUp}>
-                <h2
-                  id="part1"
-                  className="text-xl font-semibold text-left text-black dark:text-white"
-                >
-                  Part 4. Image Rectification
-                </h2>
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  In this section, we will use the homography computation and
-                  the warp image function above to help us rectify images.
-                </p>
+            <h2
+              id="part1"
+              className="text-xl font-semibold text-left text-black dark:text-white"
+            >
+              Part 4. Image Rectification
+            </h2>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              In this section, we will use the homography computation and the
+              warp image function above to help us rectify images.
+            </p>
 
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  In order to do this, we first label around the corners of the
-                  object in the image - this will act as one set of keypoints.
-                  The other set of key points will be simplify defined as a
-                  normal rectangle (or square). For example, knowing that my tv
-                  has an aspect ratio of 16:9, I used [[0, 0], [1600, 0], [0,
-                  900], [1600, 900]] as the second set of key points.
-                </p>
-              </motion.div>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              In order to do this, we first label around the corners of the
+              object in the image - this will act as one set of keypoints. The
+              other set of key points will be simplify defined as a normal
+              rectangle (or square). For example, knowing that my tv has an
+              aspect ratio of 16:9, I used [[0, 0], [1600, 0], [0, 900], [1600,
+              900]] as the second set of key points.
+            </p>
 
-              <motion.div {...fadeInUp}>
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  We then compute the homography matrix between the two sets of
-                  points (object labelled points and desired shape points). We
-                  can then warp the image using the homography matrix and the
-                  warp image function defined above.
-                </p>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              We then compute the homography matrix between the two sets of
+              points (object labelled points and desired shape points). We can
+              then warp the image using the homography matrix and the warp image
+              function defined above.
+            </p>
 
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  Here are two examples:
-                </p>
-              </motion.div>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              Here are two examples:
+            </p>
 
-              <motion.div {...fadeIn}>
-                <DoublePhoto
-                  photo1={{
-                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
-                    description: 'Figure 4.1: TV',
-                  }}
-                  photo2={{
-                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
-                    description: 'Figure 4.2: Rectified TV',
-                  }}
-                />
-              </motion.div>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
+                description: 'Figure 4.1: TV',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
+                description: 'Figure 4.2: Rectified TV',
+              }}
+            />
 
-              <motion.div {...fadeIn}>
-                <DoublePhoto
-                  photo1={{
-                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
-                    description: 'Figure 4.3: EDC Box',
-                  }}
-                  photo2={{
-                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
-                    description: 'Figure 4.4: Rectified EDC Box',
-                  }}
-                />
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
+                description: 'Figure 4.3: EDC Box',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
+                description: 'Figure 4.4: Rectified EDC Box',
+              }}
+            />
 
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  We&apos;re now ready to start building mosaics!
-                </p>
-              </motion.div>
-            </div>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              We&apos;re now ready to start building mosaics!
+            </p>
           </motion.div>
 
           <div className="flex flex-col justify-center mb-4 mt-6">
