@@ -315,13 +315,7 @@ export default function Project4() {
             </p>
           </div>
 
-          <motion.div
-            variants={slideInVariants('left')}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col justify-center mb-4 mt-6"
-          >
+          <div className="flex flex-col justify-center mb-4 mt-6">
             <h2
               id="part1"
               className="text-xl font-semibold text-left text-black dark:text-white"
@@ -366,14 +360,8 @@ export default function Project4() {
                 </p>{' '}
               </li>{' '}
             </ol>
-          </motion.div>
-          <motion.div
-            variants={slideInVariants('right')}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            className="flex flex-col justify-center mb-4 mt-6"
-          >
+          </div>
+          <div className="flex flex-col justify-center mb-4 mt-6">
             <h2
               id="part1"
               className="text-xl font-semibold text-left text-black dark:text-white"
@@ -430,29 +418,27 @@ export default function Project4() {
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
               We&apos;re now ready to start building mosaics!
             </p>
-          </motion.div>
+          </div>
 
           <div className="flex flex-col justify-center mb-4 mt-6">
-            <motion.div {...fadeInUp}>
-              <h2
-                id="part1"
-                className="text-xl font-semibold text-left text-black dark:text-white"
-              >
-                Part 5. Image Mosaics
-              </h2>
-              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                In this section, we will use the image rectification and the
-                warp image function above to help us generate mosaics.
-              </p>
-              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                My approach was as follows: I first chose a photo to be the
-                &quot;plane&quot;, where all the other photos would be warped
-                into via the labelled correspondences. After warping one image
-                to the plane of the other, I then found the corners of the
-                warped image and the other image, and made a mask for each.
-                Here&apos;s an example of that:
-              </p>
-            </motion.div>
+            <h2
+              id="part1"
+              className="text-xl font-semibold text-left text-black dark:text-white"
+            >
+              Part 5. Image Mosaics
+            </h2>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              In this section, we will use the image rectification and the warp
+              image function above to help us generate mosaics.
+            </p>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              My approach was as follows: I first chose a photo to be the
+              &quot;plane&quot;, where all the other photos would be warped into
+              via the labelled correspondences. After warping one image to the
+              plane of the other, I then found the corners of the warped image
+              and the other image, and made a mask for each. Here&apos;s an
+              example of that:
+            </p>
 
             <DoublePhoto
               photo1={{
