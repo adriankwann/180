@@ -482,11 +482,10 @@ export default function Project4() {
               Mosaic 1: Stinson Beach
             </h3>
             <motion.div
-              variants={zoomInVariants}
+              variants={slideInVariants('right')}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, amount: 0.5 }}
-              className="rounded-md overflow-hidden"
+              viewport={{ once: true, amount: 0.2 }}
             >
               <div className="flex justify-center gap-4 mt-8 mb-8">
                 <div className="flex-none">
