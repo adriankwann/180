@@ -10,6 +10,35 @@ import Footer from '@/components/ui/footer';
 import Latex from 'react-latex-next';
 import 'katex/dist/katex.min.css';
 import DoublePhoto from '@/components/ui/double_photo';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0, transition: { duration: 1.5 } },
+};
+
+const fadeIn = {
+  initial: { opacity: 0 },
+  whileInView: { opacity: 1, transition: { duration: 1 } },
+};
+
+const zoomInVariants = {
+  hidden: { scale: 0.8, opacity: 0 },
+  show: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+};
+
+const slideInVariants = (direction = 'left') => ({
+  hidden: { x: direction === 'left' ? -100 : 100, opacity: 0 },
+  show: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.8, ease: 'easeOut' },
+  },
+});
 
 export default function Project4() {
   const [loading, setLoading] = useState(true);
@@ -286,122 +315,219 @@ export default function Project4() {
             </p>
           </div>
 
+          <motion.div
+            variants={slideInVariants('left')}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="mb-4"
+          >
+            <div className="flex flex-col justify-center mb-4 mt-6">
+              <h2
+                id="part1"
+                className="text-xl font-semibold text-left text-black dark:text-white"
+              >
+                Part 3. Warping the Images.
+              </h2>
+              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                {' '}
+                In this section, we take the homographies calculated from the
+                previous section and use them to warp images. The process
+                involves a few key steps:{' '}
+              </p>{' '}
+              <ol className="text-sm mt-1 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                {' '}
+                <li>
+                  {' '}
+                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                    {' '}
+                    1. First, we calculate the bounding box of the output
+                    (warped) image by applying the homography matrix H to the
+                    corners of the original image. This defines the area where
+                    interpolation will occur.{' '}
+                  </p>{' '}
+                </li>{' '}
+                <li>
+                  {' '}
+                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                    {' '}
+                    2. Next, we use inverse warping to find the corresponding
+                    coordinates in the input image for each pixel in the output
+                    image, applying the inverse of the homography matrix H_inv.
+                  </p>{' '}
+                </li>{' '}
+                <li>
+                  {' '}
+                  <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                    {' '}
+                    3. Finally, since the mapped coordinates are often decimal
+                    values, we apply linear interpolation to estimate the pixel
+                    values in the output image by combining the surrounding
+                    pixel information from the input image.{' '}
+                  </p>{' '}
+                </li>{' '}
+              </ol>
+            </div>
+          </motion.div>
+          <motion.div
+            variants={slideInVariants('right')}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="flex flex-col justify-center mb-4 mt-6">
+              <motion.div {...fadeInUp}>
+                <h2
+                  id="part1"
+                  className="text-xl font-semibold text-left text-black dark:text-white"
+                >
+                  Part 4. Image Rectification
+                </h2>
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  In this section, we will use the homography computation and
+                  the warp image function above to help us rectify images.
+                </p>
+
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  In order to do this, we first label around the corners of the
+                  object in the image - this will act as one set of keypoints.
+                  The other set of key points will be simplify defined as a
+                  normal rectangle (or square). For example, knowing that my tv
+                  has an aspect ratio of 16:9, I used [[0, 0], [1600, 0], [0,
+                  900], [1600, 900]] as the second set of key points.
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeInUp}>
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  We then compute the homography matrix between the two sets of
+                  points (object labelled points and desired shape points). We
+                  can then warp the image using the homography matrix and the
+                  warp image function defined above.
+                </p>
+
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  Here are two examples:
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeIn}>
+                <DoublePhoto
+                  photo1={{
+                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
+                    description: 'Figure 4.1: TV',
+                  }}
+                  photo2={{
+                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
+                    description: 'Figure 4.2: Rectified TV',
+                  }}
+                />
+              </motion.div>
+
+              <motion.div {...fadeIn}>
+                <DoublePhoto
+                  photo1={{
+                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
+                    description: 'Figure 4.3: EDC Box',
+                  }}
+                  photo2={{
+                    src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
+                    description: 'Figure 4.4: Rectified EDC Box',
+                  }}
+                />
+
+                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                  We&apos;re now ready to start building mosaics!
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
           <div className="flex flex-col justify-center mb-4 mt-6">
-            <h2
-              id="part1"
-              className="text-xl font-semibold text-left text-black dark:text-white"
-            >
-              Part 3. Warping the Images.
-            </h2>
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              {' '}
-              In this section, we take the homographies calculated from the
-              previous section and use them to warp images. The process involves
-              a few key steps:{' '}
-            </p>{' '}
-            <ol className="text-sm mt-1 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              {' '}
-              <li>
-                {' '}
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  {' '}
-                  1. First, we calculate the bounding box of the output (warped)
-                  image by applying the homography matrix H to the corners of
-                  the original image. This defines the area where interpolation
-                  will occur.{' '}
-                </p>{' '}
-              </li>{' '}
-              <li>
-                {' '}
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  {' '}
-                  2. Next, we use inverse warping to find the corresponding
-                  coordinates in the input image for each pixel in the output
-                  image, applying the inverse of the homography matrix H_inv.
-                </p>{' '}
-              </li>{' '}
-              <li>
-                {' '}
-                <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-                  {' '}
-                  3. Finally, since the mapped coordinates are often decimal
-                  values, we apply linear interpolation to estimate the pixel
-                  values in the output image by combining the surrounding pixel
-                  information from the input image.{' '}
-                </p>{' '}
-              </li>{' '}
-            </ol>
-          </div>
-          <div className="flex flex-col justify-center mb-4 mt-6">
-            <h2
-              id="part1"
-              className="text-xl font-semibold text-left text-black dark:text-white"
-            >
-              Part 4. Image Rectification
-            </h2>
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              In this section, we will use the homography computation and the
-              warp image function above to help us rectify images.
-            </p>
+            <motion.div {...fadeInUp}>
+              <h2
+                id="part1"
+                className="text-xl font-semibold text-left text-black dark:text-white"
+              >
+                Part 5. Image Mosaics
+              </h2>
+              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                In this section, we will use the image rectification and the
+                warp image function above to help us generate mosaics.
+              </p>
+              <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+                My approach was as follows: I first chose a photo to be the
+                &quot;plane&quot;, where all the other photos would be warped
+                into via the labelled correspondences. After warping one image
+                to the plane of the other, I then found the corners of the
+                warped image and the other image, and made a mask for each.
+                Here&apos;s an example of that:
+              </p>
+            </motion.div>
 
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/warped_left.jpg',
+                description: 'Figure 5.1: Warped Left Image onto Center Image',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_left.jpg',
+                description: 'Figure 5.2: Mask for the Warped Left Image',
+              }}
+            />
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              In order to do this, we first label around the corners of the
-              object in the image - this will act as one set of keypoints. The
-              other set of key points will be simplify defined as a normal
-              rectangle (or square). For example, knowing that my tv has an
-              aspect ratio of 16:9, I used [[0, 0], [1600, 0], [0, 900], [1600,
-              900]] as the second set of key points.
-            </p>
-
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              We then compute the homography matrix between the two sets of
-              points (object labelled points and desired shape points). We can
-              then warp the image using the homography matrix and the warp image
-              function defined above.
-            </p>
-
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              Here are two examples:
+              I then generated a blend/feathered mask for each of the original
+              masks. This is done by using bwdist, which computes the distance
+              transform of each mask. For areas where there is no overlap
+              between the masks, we simply set the blend mask to 1. For areas
+              where there exists an overlap, we use the distance transform to
+              create a gradient such that the blending will be smooth.
+              Here&apos;s an example of that:
             </p>
 
             <DoublePhoto
               photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
-                description: 'Figure 4.1: TV',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_l.jpg',
+                description:
+                  'Figure 5.3: Bwdist Mask for the Warped Left Image',
               }}
               photo2={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv_warped.jpg',
-                description: 'Figure 4.2: Rectified TV',
-              }}
-            />
-
-            <DoublePhoto
-              photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
-                description: 'Figure 4.3: EDC Box',
-              }}
-              photo2={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
-                description: 'Figure 4.4: Rectified EDC Box',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mask_m.jpg',
+                description:
+                  'Figure 5.4: Bwdist Mask for the Non-Warped Center Image',
               }}
             />
 
             <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              We&apos;re now ready to start building mosaics!
+              Finally, I used these masks to blend the warped image onto the
+              original image. Here are the mosaics I created:
             </p>
-          </div>
 
-          <div className="flex flex-col justify-center mb-4 mt-6">
-            <h2
-              id="part1"
-              className="text-xl font-semibold text-left text-black dark:text-white"
+            <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Mosaic 1: Stinson Beach
+            </h3>
+            <motion.div
+              variants={zoomInVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              className="rounded-md overflow-hidden"
             >
-              Part 5. Image Mosaics
-            </h2>
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              In this section, we will use the image rectification and the warp
-              image function above to help us generate mosaics.
-            </p>
+              <div className="flex justify-center gap-4 mt-8 mb-8">
+                <div className="flex-none">
+                  <Image
+                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach.jpg"
+                    alt="Stinson Beach Mosaic"
+                    width={600}
+                    height={200}
+                    className="rounded-md"
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    Figure 5.5: Stinson Beach Mosaic
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
