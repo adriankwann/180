@@ -130,6 +130,7 @@ export default function Project4() {
                   width={300}
                   height={200}
                   className="rounded-md"
+                  priority
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
                   Figure 1.1: Stinson Beach, Left
@@ -143,6 +144,7 @@ export default function Project4() {
                   width={300}
                   height={200}
                   className="rounded-md"
+                  priority
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
                   Figure 1.2: Stinson Beach, Middle
@@ -156,6 +158,7 @@ export default function Project4() {
                   width={300}
                   height={200}
                   className="rounded-md"
+                  priority
                 />
                 <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
                   Figure 1.3: Stinson Beach, Right
