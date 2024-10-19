@@ -139,20 +139,34 @@ export default function Project4() {
             </div>
 
             <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
-              Set 2: TBD
+              Set 2: Oakland to SF
             </h3>
 
-            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
-              TBD
-            </p>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2050.jpg',
+                description: 'Figure 1.4: Oakland',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2051.jpg',
+                description: 'Figure 1.5: SF',
+              }}
+            />
 
             <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
-              Set 3: TBD
+              Set 3: Berkeley
             </h3>
 
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              TBD
-            </p>
+            <DoublePhoto
+              photo1={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2056.jpg',
+                description: 'Figure 1.6: Berkeley 1',
+              }}
+              photo2={{
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2057.jpg',
+                description: 'Figure 1.7: Berkeley 2',
+              }}
+            />
 
             <Separator />
           </div>
@@ -457,7 +471,7 @@ export default function Project4() {
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach_new.jpg"
                   alt="Stinson Beach Mosaic"
                   width={600}
                   height={200}
@@ -468,6 +482,54 @@ export default function Project4() {
                 </p>
               </div>
             </div>
+
+            <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Mosaic 2: Oakland to SF
+            </h3>
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf.jpg"
+                  alt="Oakland SF Mosaic"
+                  width={500}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.6: Oakland to SF Mosaic
+                </p>
+              </div>
+            </div>
+
+            <h3 className="text-md font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Mosaic 3: Berkeley
+            </h3>
+            <div className="flex justify-center gap-4 mt-8 mb-8">
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk.jpg"
+                  alt="Oakland SF Mosaic"
+                  width={500}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  Figure 5.7: Berkeley Mosaic
+                </p>
+              </div>
+            </div>
+
+            <h2 className="text-xl font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Conclusion
+            </h2>
+            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+              I learned a lot during this project. My favorite part was honestly
+              trying to figure out a way to generalize adding additional images
+              onto my existing mosaics, which turned out to be a great learning
+              exercise and truly solidified my understanding. Also,
+              rectification is so cool - I saw my friend do a rectification
+              project a few years ago and I have always wondered how it works!
+            </p>
           </div>
         </div>
       </div>
