@@ -380,7 +380,7 @@ export default function Project4() {
 
             <DoublePhoto
               photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2018.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/tv.jpg',
                 description: 'Figure 4.1: TV',
               }}
               photo2={{
@@ -391,11 +391,11 @@ export default function Project4() {
 
             <DoublePhoto
               photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2025.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc_rescale.jpg',
                 description: 'Figure 4.3: EDC Box',
               }}
               photo2={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/edc.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/warped_edc.jpg',
                 description: 'Figure 4.4: Rectified EDC Box',
               }}
             />
