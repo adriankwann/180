@@ -97,7 +97,7 @@ export default function Project4() {
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_1766.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/im_left.jpg"
                   alt="Stinson Beach, Left"
                   width={300}
                   height={200}
@@ -110,7 +110,7 @@ export default function Project4() {
 
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_1767.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/im_middle.jpg"
                   alt="Stinson Beach, Middle"
                   width={300}
                   height={200}
@@ -123,7 +123,7 @@ export default function Project4() {
 
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_1768.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/im_right.jpg"
                   alt="Stinson Beach, Right"
                   width={300}
                   height={200}
@@ -141,11 +141,11 @@ export default function Project4() {
 
             <DoublePhoto
               photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2050.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/im_left_sf.jpg',
                 description: 'Figure 1.4: Oakland',
               }}
               photo2={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2051.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/im_right_sf.jpg',
                 description: 'Figure 1.5: SF',
               }}
             />
@@ -156,11 +156,11 @@ export default function Project4() {
 
             <DoublePhoto
               photo1={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2056.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/im_left_berk.jpg',
                 description: 'Figure 1.6: Berkeley 1',
               }}
               photo2={{
-                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/IMG_2057.jpg',
+                src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/im_right_berk.jpg',
                 description: 'Figure 1.7: Berkeley 2',
               }}
             />
@@ -468,7 +468,7 @@ export default function Project4() {
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/beach_new.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/final_mosaic.jpg"
                   alt="Stinson Beach Mosaic"
                   width={600}
                   height={200}
@@ -486,7 +486,7 @@ export default function Project4() {
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf_small.jpg"
                   alt="Oakland SF Mosaic"
                   width={500}
                   height={200}
@@ -504,7 +504,7 @@ export default function Project4() {
             <div className="flex justify-center gap-4 mt-8 mb-8">
               <div className="flex-none">
                 <Image
-                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk.jpg"
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk_small.jpg"
                   alt="Oakland SF Mosaic"
                   width={500}
                   height={200}
