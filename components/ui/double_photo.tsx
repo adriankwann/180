@@ -29,7 +29,6 @@ export default function DoublePhoto({
           height={height}
           layout="intrinsic" // Use intrinsic for width and height to work
           className="rounded-md"
-          priority
         />
         <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
           {photo1.description}
