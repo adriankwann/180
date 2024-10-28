@@ -728,54 +728,68 @@ export default function Project4() {
               </p>
             </div>
           </div>
+
+          <h2 className="text-xl font-semibold text-left text-black dark:text-white">
+            Final Results
+          </h2>
           <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-            Here are the mosaics computed using automatically computed
-            correspondences:
+            Here are the mosaics computed, both manually and automatically:
           </p>
-          <div className="flex justify-center gap-4 mt-8 mb-8">
-            <div className="flex-none">
-              <Image
-                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf_auto.jpg"
-                alt="Feature 2"
-                width={500}
-                height={400}
-                className="rounded-md"
-              />
-              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                Mosaic: SF, Auto
-              </p>
-            </div>
-          </div>
 
-          <div className="flex justify-center gap-4 mt-8 mb-8">
-            <div className="flex-none">
-              <Image
-                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk_auto.jpg"
-                alt="Feature 2"
-                width={500}
-                height={400}
-                className="rounded-md"
-              />
-              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                Mosaic: Berkeley, Auto
-              </p>
-            </div>
-          </div>
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf.jpg',
+              description: 'Mosaic: SF, Manual',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf_auto.jpg',
+              description: 'Mosaic: SF, Auto',
+            }}
+            width={400}
+            height={200}
+          />
 
-          <div className="flex justify-center gap-4 mt-8 mb-8">
-            <div className="flex-none">
-              <Image
-                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_beach_auto.jpg"
-                alt="Feature 2"
-                width={500}
-                height={400}
-                className="rounded-md"
-              />
-              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                Mosaic: Stinson Beach, Auto
-              </p>
-            </div>
-          </div>
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk.jpg',
+              description: 'Mosaic: Berkeley, Manual',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk_auto.jpg',
+              description: 'Mosaic: Berkeley, Auto',
+            }}
+            width={400}
+            height={200}
+          />
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/final_mosaic.jpg',
+              description: 'Mosaic: Stinson Beach, Manual',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_beach_auto.jpg',
+              description: 'Mosaic: Stinson Beach, Auto',
+            }}
+            width={400}
+            height={200}
+          />
+
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            As seen here, there isn&apos;t too much of a difference between the
+            manual and automatic mosaics. This is therefore a good result as we
+            can see that the features are matched correctly.
+          </p>
+
+          <h2 className="text-xl font-semibold text-left text-black dark:text-white">
+            Conclusion
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            The coolest thing I learned during this project was RANSAC. It is
+            surprising to me that the algorithm works well, as it seems very
+            brute force (we don't iterate on previous mistakes, like gradient
+            descent).
+          </p>
         </div>
       </div>
 
