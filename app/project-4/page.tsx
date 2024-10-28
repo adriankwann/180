@@ -738,7 +738,7 @@ export default function Project4() {
 
           <DoublePhoto
             photo1={{
-              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf.jpg',
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf_small.jpg',
               description: 'Mosaic: SF, Manual',
             }}
             photo2={{
@@ -751,7 +751,7 @@ export default function Project4() {
 
           <DoublePhoto
             photo1={{
-              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk.jpg',
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk_small.jpg',
               description: 'Mosaic: Berkeley, Manual',
             }}
             photo2={{
