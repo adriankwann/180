@@ -705,13 +705,14 @@ export default function Project4() {
             mathematical model from a dataset that contains both inliers (data
             points that fit the model) and outliers (noise or incorrect data).
             In our case, we are using a 4-point RANSAC algorithm, where the
-            "model" is our computed homography matrix. In short, we want to find
-            the homography matrix that causes the least amount of outliers,
-            where an outlier is defined as a point that exceeds a certain error
-            threshold. We do this by selecting a random subset of 4 points from
-            the left image and right image, computing the homography matrix
-            between them, and constantly checking if this improves upon our
-            previous guess. Here are the matches after running RANSAC:
+            &quot;model&quot; is our computed homography matrix. In short, we
+            want to find the homography matrix that causes the least amount of
+            outliers, where an outlier is defined as a point that exceeds a
+            certain error threshold. We do this by selecting a random subset of
+            4 points from the left image and right image, computing the
+            homography matrix between them, and constantly checking if this
+            improves upon our previous guess. Here are the matches after running
+            RANSAC:
           </p>
           <div className="flex justify-center gap-4 mt-8 mb-8">
             <div className="flex-none">
