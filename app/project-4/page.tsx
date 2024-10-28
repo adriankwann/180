@@ -534,7 +534,7 @@ export default function Project4() {
           <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
             The first step is to compute the Harris corner points for each
             image. I decided to not tweak the parameters (min_distance, sigma)
-            as I allowed ANMS to filter the points out later. Here's the SF
+            as I allowed ANMS to filter the points out later. Here&apos;s the SF
             image with Harris corner points, along with the Harris matrix:
           </p>
 
@@ -556,13 +556,13 @@ export default function Project4() {
             ANMS (Automatic Non-Maximal Suppression)
           </h2>
           <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-            Clearly, we have way too many points right now (there's a total of
-            around 42000). Hence, we need to suppress most of them. Here, we use
-            ANMS, which essentially calculates the minimum distance to a
+            Clearly, we have way too many points right now (there&apos;s a total
+            of around 42000). Hence, we need to suppress most of them. Here, we
+            use ANMS, which essentially calculates the minimum distance to a
             stronger point for each point. This is known as the suppression
             radius, and we can filter based on either a threshold value or with
-            the top N number of points. Here's the SF image with points after
-            ANMS:
+            the top N number of points. Here&apos;s the SF image with points
+            after ANMS:
           </p>
 
           <DoublePhoto
@@ -673,10 +673,10 @@ export default function Project4() {
             Our next step is to match the features between the left and right
             images. We do this by using nearest neighbors; however, we need to
             try and distinguish between correct and incorrect guesses. The way
-            we do so is use Lowe's trick, which computes the ratio between the
-            error of the 1st NN and the error of the 2nd NN; in theory, if it's
-            a correct match, the ratio should be small. I decided to use a
-            threshold of 0.8 for the ratio, and a K-d tree to speed up the
+            we do so is use Lowe&apos;s trick, which computes the ratio between
+            the error of the 1st NN and the error of the 2nd NN; in theory, if
+            it&apos;s a correct match, the ratio should be small. I decided to
+            use a threshold of 0.8 for the ratio, and a K-d tree to speed up the
             nearest neighbor calculations. Here are some examples:
           </p>
           <DoublePhoto
