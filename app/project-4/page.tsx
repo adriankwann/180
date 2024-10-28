@@ -60,7 +60,7 @@ export default function Project4() {
 
           <div className="flex flex-col justify-center mb-4 mt-6">
             <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
-              Background
+              Part A
             </h2>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
@@ -515,18 +515,235 @@ export default function Project4() {
                 </p>
               </div>
             </div>
+          </div>
+          <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
+            Part B
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            In this section, we attempt to automatically find the
+            correspondences between images and using those to create our
+            mosaics.
+          </p>
 
-            <h2 className="text-xl font-semibold mt-3 text-slate-500 dark:text-slate-300 text-left">
-              Conclusion
-            </h2>
-            <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
-              I learned a lot during this project. My favorite part was honestly
-              trying to figure out a way to generalize adding additional images
-              onto my existing mosaics, which turned out to be a great learning
-              exercise and truly solidified my understanding. Also,
-              rectification is so cool - I saw my friend do a rectification
-              project a few years ago and I have always wondered how it works!
-            </p>
+          <h2
+            id="part1"
+            className="text-xl font-semibold text-left text-black dark:text-white"
+          >
+            Harris Points
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            The first step is to compute the Harris corner points for each
+            image. I decided to not tweak the parameters (min_distance, sigma)
+            as I allowed ANMS to filter the points out later. Here's the SF
+            image with Harris corner points, along with the Harris matrix:
+          </p>
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/harris_corners_with_im.jpg',
+              description: 'Figure 6.1: SF Image with Harris Corner Points',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/harris.jpg',
+              description: 'Figure 6.2: Harris Matrix',
+            }}
+          />
+
+          <h2
+            id="part2"
+            className="text-xl font-semibold text-left text-black dark:text-white"
+          >
+            ANMS (Automatic Non-Maximal Suppression)
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            Clearly, we have way too many points right now (there's a total of
+            around 42000). Hence, we need to suppress most of them. Here, we use
+            ANMS, which essentially calculates the minimum distance to a
+            stronger point for each point. This is known as the suppression
+            radius, and we can filter based on either a threshold value or with
+            the top N number of points. Here's the SF image with points after
+            ANMS:
+          </p>
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/adms.jpg',
+              description: 'Figure 6.3: SF Image with ANMS Points, r=24',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/harris_corners_with_im_nip.jpg',
+              description: 'Figure 6.4: SF Image with ANMS Points, N=100',
+            }}
+          />
+
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            Note that here, a lot of points are in the sky as there happened to
+            be quite a lot of aliasing. In addition, there are a lot of points
+            in general if we only use thresholding; however, this turns out to
+            not be an issue as when we feature match, we eliminate quite a few
+            of the points.
+          </p>
+
+          <h2
+            id="part3"
+            className="text-xl font-semibold text-left text-black dark:text-white"
+          >
+            Feature Extraction
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            Once we have the points, we need to extract features from each point
+            so that we can match them later on. At each of our remaining
+            interest points, we sample a 40 by 40 pixel window around it and
+            then sample every 5 pixels. This is done to reduce chances of
+            aliasing. Here are a few examples of features extracted from the SF
+            image:
+          </p>
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/feature1.jpg"
+                alt="Feature 1"
+                width={150}
+                height={150}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Feature 1
+              </p>
+            </div>
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/feature2.jpg"
+                alt="Feature 2"
+                width={150}
+                height={150}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Feature 2
+              </p>
+            </div>
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/feature3.jpg"
+                alt="Feature 2"
+                width={150}
+                height={150}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Feature 3
+              </p>
+            </div>
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/feature4.jpg"
+                alt="Feature 2"
+                width={150}
+                height={150}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Feature 4
+              </p>
+            </div>
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/feature5.jpg"
+                alt="Feature 2"
+                width={150}
+                height={150}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Feature 5
+              </p>
+            </div>
+          </div>
+
+          <h2 className="text-xl font-semibold text-left text-black dark:text-white">
+            Feature Matching
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            We have now extracted a feature for each of our interest points. We
+            now do the same thing for our right image which leaves us with two
+            feature sets.
+          </p>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            Our next step is to match the features between the left and right
+            images. We do this by using nearest neighbors; however, we need to
+            try and distinguish between correct and incorrect guesses. The way
+            we do so is use Lowe's trick, which computes the ratio between the
+            error of the 1st NN and the error of the 2nd NN; in theory, if it's
+            a correct match, the ratio should be small. I decided to use a
+            threshold of 0.8 for the ratio, and a K-d tree to speed up the
+            nearest neighbor calculations. Here are some examples:
+          </p>
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/feature_matching.jpg',
+              description: 'Features Matched',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/feature_matching_with_rejected.jpg',
+              description: 'Features Matched with Rejected Points (Green)',
+            }}
+          />
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            We can see that the feature matching has eliminated most if not all
+            the points in the sky. However, there are points matched incorrectly
+            as some points in the left image would not show up in the right
+            image due to the change in FOV. The next section attempts to address
+            these problems:
+          </p>
+
+          <h2 className="text-xl font-semibold text-left text-black dark:text-white">
+            RANSAC
+          </h2>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            RANSAC is an iterative algorithm used to estimate parameters of a
+            mathematical model from a dataset that contains both inliers (data
+            points that fit the model) and outliers (noise or incorrect data).
+            In our case, we are using a 4-point RANSAC algorithm, where the
+            "model" is our computed homography matrix. In short, we want to find
+            the homography matrix that causes the least amount of outliers,
+            where an outlier is defined as a point that exceeds a certain error
+            threshold. We do this by selecting a random subset of 4 points from
+            the left image and right image, computing the homography matrix
+            between them, and constantly checking if this improves upon our
+            previous guess. Here are the matches after running RANSAC:
+          </p>
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/ransac.jpg"
+                alt="Feature 2"
+                width={500}
+                height={400}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Features Matched after RANSAC
+              </p>
+            </div>
+          </div>
+          <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
+            Here are the mosaics computed using automatically computed
+            correspondences:
+          </p>
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_sf_auto.jpg"
+                alt="Feature 2"
+                width={500}
+                height={400}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Mosaic: SF, Auto
+              </p>
+            </div>
           </div>
         </div>
       </div>
