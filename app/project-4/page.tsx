@@ -787,8 +787,8 @@ export default function Project4() {
           <p className="text-sm mt-3 mb-3 text-slate-500 dark:text-slate-300 text-left">
             The coolest thing I learned during this project was RANSAC. It is
             surprising to me that the algorithm works well, as it seems very
-            brute force (we don't iterate on previous mistakes, like gradient
-            descent).
+            brute force (we don&apos;t iterate on previous mistakes, like
+            gradient descent).
           </p>
         </div>
       </div>
