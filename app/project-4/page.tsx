@@ -745,6 +745,36 @@ export default function Project4() {
               </p>
             </div>
           </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_berk_auto.jpg"
+                alt="Feature 2"
+                width={500}
+                height={400}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Mosaic: Berkeley, Auto
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/mosaic_beach_auto.jpg"
+                alt="Feature 2"
+                width={500}
+                height={400}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Mosaic: Stinson Beach, Auto
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
