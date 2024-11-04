@@ -52,10 +52,11 @@ export function NavDropDown() {
             <span>Project 4: Mosaics</span>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem asChild disabled title="Work in progress">
+
+        <DropdownMenuItem asChild>
           <Link href="/project-5">
-            <LoaderCircle className="mr-2 h-4 w-4" />
-            <span>Project 5: TBD</span>
+            <GalleryHorizontalEnd className="mr-2 h-4 w-4" />
+            <span>Project 5: Diffusion</span>
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
