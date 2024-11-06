@@ -505,8 +505,8 @@ export default function Project4() {
             start at step 990, and skip 30 steps each time.
           </p>
           <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
-            Given that t is our current step, and t' is our desired next step,
-            we can compute the next image x_t' as follows:
+            Given that t is our current step, and t&apos; is our desired next
+            step, we can compute the next image x_t&apos; as follows:
           </p>
 
           <div className="flex justify-center mt-4">
@@ -586,7 +586,7 @@ export default function Project4() {
           </div>
 
           <p className="text-sm mt-5 text-slate-500 dark:text-slate-300 text-left">
-            And here are all the denoising methods' results we have seen:
+            And here are all the denoising methods&apos; results we have seen:
           </p>
 
           <div className="flex justify-center gap-4 mt-8 mb-2">
@@ -656,8 +656,8 @@ export default function Project4() {
             In this section, we use the same iterative denoising function we
             just used; however, instead of starting at timestep 10, we start at
             timestep 0 which is effectively pure noise. We then use the prompt
-            "a high quality photo" to see what type of images the model now
-            generates. Here are the results:
+            &quot;a high quality photo&quot; to see what type of images the
+            model now generates. Here are the results:
           </p>
 
           <div className="flex justify-center gap-4 mt-8 mb-2">
