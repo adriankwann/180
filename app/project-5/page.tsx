@@ -1356,7 +1356,7 @@ export default function Project4() {
                 className="rounded-md"
               />
               <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                Original Building
+                Drawn Building
               </p>
             </div>
           </div>
@@ -1455,7 +1455,7 @@ export default function Project4() {
                 className="rounded-md"
               />
               <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
-                Original Tree
+                Drawn Tree
               </p>
             </div>
           </div>
