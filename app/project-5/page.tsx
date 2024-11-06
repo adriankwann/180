@@ -201,10 +201,191 @@ export default function Project4() {
               </h2>
 
               <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
-                In this section, we attempt to...
+                In this section, we will write our own sampling loops to begin
+                generating images using the pretrained DeepFloyd model.
+              </p>
+
+              <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+                1.1: Implementing the Forward Process
+              </h3>
+
+              <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+                In this section, we will implement the forward process of
+                diffusion, which is the process of progressively adding more and
+                more noise to the image. This is formally defined by:
+              </p>
+
+              <div className="flex justify-center mt-4">
+                <Latex>{`$q(x_t | x_0) = \\mathcal{N}(x_t ; \\sqrt{\\bar{\\alpha}} x_0, (1 - \\bar{\\alpha}_t) \\mathbf{I})$`}</Latex>
+              </div>
+
+              <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+                In our case, we compute it as follows:
+              </p>
+
+              <div className="flex justify-center mt-4">
+                <Latex>{`$x_t = \\sqrt{\\bar{\\alpha}_t} x_0 + \\sqrt{1 - \\bar{\\alpha}_t} \\epsilon \\quad \\epsilon \\sim \\mathcal{N}(0, 1)$`}</Latex>
+              </div>
+
+              <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+                This is how we get the noisy image at timestep t with regard to
+                the original image x_0. Here are some samples of the forward
+                process:
+              </p>
+
+              <div className="flex justify-center gap-4 mt-8 mb-8">
+                <div className="flex-none">
+                  <Image
+                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile.jpg"
+                    alt="250"
+                    width={150}
+                    height={150}
+                    className="rounded-md"
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    Original Campenile
+                  </p>
+                </div>
+
+                <div className="flex-none">
+                  <Image
+                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_250.jpg"
+                    alt="250"
+                    width={150}
+                    height={200}
+                    className="rounded-md"
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    t=250
+                  </p>
+                </div>
+
+                <div className="flex-none">
+                  <Image
+                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_500.jpg"
+                    alt="500"
+                    width={150}
+                    height={200}
+                    className="rounded-md"
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    t=500
+                  </p>
+                </div>
+
+                <div className="flex-none">
+                  <Image
+                    src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_750.jpg"
+                    alt="750"
+                    width={150}
+                    height={200}
+                    className="rounded-md"
+                  />
+                  <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                    t=750
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+              1.2: Classical Denoising
+            </h3>
+
+            <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+              Here, we attempt to denoise the images from above using classical
+              methods. Specifically, we will be using Gaussian blur filtering to
+              try and remove the noise added. Here are the results, using a
+              sigma value of 2 and a kernel size of 5x5.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-8 mb-2">
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_250.jpg"
+                  alt="250"
+                  width={150}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  t=250, noisy
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_500.jpg"
+                  alt="500"
+                  width={150}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  t=500, noisy
+                </p>
+              </div>
+
+              <div className="flex-none">
+                <Image
+                  src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_750.jpg"
+                  alt="750"
+                  width={150}
+                  height={200}
+                  className="rounded-md"
+                />
+                <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                  t=750, noisy
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center gap-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/denoised_t_250.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=250, denoised
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/denoised_t_500.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=500, denoised
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/denoised_t_750.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=750, denoised
               </p>
             </div>
           </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            As one can see, classical methods don&apos;t work well for denoising
+            these images. In the next few sections, we will implement a better
+            method.
+          </p>
         </div>
         <div />
       </div>
