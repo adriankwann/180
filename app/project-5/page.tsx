@@ -386,6 +386,356 @@ export default function Project4() {
             these images. In the next few sections, we will implement a better
             method.
           </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.3: One-Step Denoising
+          </h3>
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            In this section, we use a pretrained model to denoise the images. We
+            have access to a UNet that maps between x_0 and x_t pairs of images,
+            which as a reminder are the original image and the noisy image at
+            timestep t. We essentially recover the gaussian noise added between
+            x_0 and x_t, and subtract it all from x_t in one go (hence, the name
+            one-step denoising). Taking the same noisy images at t = 250, 500,
+            750, we now yield these results:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-2">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_250.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=250, noisy
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_500.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=500, noisy
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/t_750.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=750, noisy
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-2">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/cleaned_250.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=250, one-step denoised
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/cleaned_500.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=500, one-step denoised
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/cleaned_750.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=750, one-step denoised
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Compared to the classical approach, the one-step denoising method is
+            clearly a lot better. We still see a dropoff in quality as more
+            noise was added (we lost details in t=750 compared to t=250).
+          </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.4: Iterative Denoising
+          </h3>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Diffusion models were designed to be denoised iteratively, not all
+            in one step. Hence, in this section, we attempt to implement just
+            that.
+          </p>
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Suppose that we start at t=1000. We could go from 1000 and iterative
+            1000 times until we hit zero. However, this is slow and requires a
+            lot of compute. In reality, we can make the process shorter and
+            cheaper by just skipping a few steps at a time. In our case, we
+            start at step 990, and skip 30 steps each time.
+          </p>
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Given that t is our current step, and t' is our desired next step,
+            we can compute the next image x_t' as follows:
+          </p>
+
+          <div className="flex justify-center mt-4">
+            <Latex>{`$x_{t'} = \\frac{\\sqrt{\\bar{\\alpha}_{t'} \\beta_t}}{1 - \\bar{\\alpha}_t} x_0 + \\frac{\\sqrt{\\alpha_t (1 - \\bar{\\alpha}_{t'})}}{1 - \\bar{\\alpha}_t} x_t + v_\\sigma$`}</Latex>
+          </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Here are the intermediate images we see while running iterative
+            denoising:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_denoise_time_690.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=690
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_denoise_time_540.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=540
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_denoise_time_390.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=390
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_denoise_time_240.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=240
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_denoise_time_90.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                t=90
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm mt-5 text-slate-500 dark:text-slate-300 text-left">
+            And here are all the denoising methods' results we have seen:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-2">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Campanile
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/blur_filtered.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Classical Denoise
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/clean_one_step.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                One-Step Denoise
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/iter_cleaned.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Iterative Denoise
+              </p>
+            </div>
+          </div>
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            We are still missing details in the iterative denoise approach;
+            however, one can clearly see that the background is much more clear
+            compared to one-step denoising. We also retain the shape of the
+            Campanile much better.
+          </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.5: Diffusion Model Sampling
+          </h3>
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            In this section, we use the same iterative denoising function we
+            just used; however, instead of starting at timestep 10, we start at
+            timestep 0 which is effectively pure noise. We then use the prompt
+            "a high quality photo" to see what type of images the model now
+            generates. Here are the results:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-2">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_2.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 2
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_3.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_4.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 4
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 5
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Some of these images look ok, such as sample 2 and sample 4.
+            However, the others seem to be quite bad. We attempt to address this
+            in the next section.
+          </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.6: Classifer Free Guidance
+          </h3>
         </div>
         <div />
       </div>
