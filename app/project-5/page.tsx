@@ -840,13 +840,13 @@ export default function Project4() {
             gradually generate images that become closer and closer to our
             source image. We do this by adding t timesteps with of noise, then
             passing that back into our CFG iterative denoise function.
-            Theoretically, as the t we choose get's higher and higher, we get
+            Theoretically, as the t we choose gets higher and higher, we get
             closer and closer to our original image. Since we still have a
             strided timestep system, we elect to use the following indices:{' '}
             {'['}1, 3, 5, 7, 10, 20{']'}. Here are the results:
           </p>
 
-          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
             Campanile
           </h4>
 
@@ -945,7 +945,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
             Dog
           </h4>
 
@@ -1044,7 +1044,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
             Shoe
           </h4>
 
@@ -1145,6 +1145,323 @@ export default function Project4() {
 
           <h3 className="text-md font-semibold text-left text-black dark:text-white mt-3">
             1.7.1: Editing Hand-Drawn and Web Images
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            The above process works really well when we have a nonrealistic
+            image and want to convert it into a realistic one. We have two ways
+            of generating non-realistic images:
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            1. Searching the Internet
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            2. Hand-drawing
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Here are some examples!
+          </p>
+
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+            Car: Web Image
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_sdedit_realistic_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_og.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Car
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+            Building: Drawn Image
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building_sdedit_realistic_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/building.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Building
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+            Tree: Drawn Image
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree_sdedit_realistic_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/tree.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Tree
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.7.2: Inpainting
           </h3>
         </div>
         <div />
