@@ -736,6 +736,416 @@ export default function Project4() {
           <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
             1.6: Classifer Free Guidance
           </h3>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            In order to improve the quality of the images we generated, we use
+            Classifier Free Guidance to help. Essentially, we now not only
+            compute a conditional noise estimate, but also an unconditional one.
+            We then formulate our overall noise estimation to be:
+          </p>
+
+          <div className="flex justify-center mt-4">
+            <Latex>{`$\\epsilon = \\epsilon_u + \\gamma (\\epsilon_c - \\epsilon_u)$`}</Latex>
+          </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Where gamma is the scale variable we&apos;re interested in. When
+            gamma = 0, we use the unconditional noise estimate, and when gamma =
+            1, we use the conditional noise estimate. However, things become
+            interested when we use gamma {'>'} 1, as that causes the image
+            generation to become better.
+          </p>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            Here are five samples using CFG and a gamma value of 7.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_cfg_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 1, CFG
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_cfg_2.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 2, CFG
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_cfg_3.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 3, CFG
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_cfg_4.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 4, CFG
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/sample_cfg_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sample 5, CFG
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            We can see that the images look much better now.
+          </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+            1.7: Image-to-image Translation
+          </h3>
+
+          <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
+            We now use the iterative denoise function with CFG defined above to
+            gradually generate images that become closer and closer to our
+            source image. We do this by adding t timesteps with of noise, then
+            passing that back into our CFG iterative denoise function.
+            Theoretically, as the t we choose get's higher and higher, we get
+            closer and closer to our original image. Since we still have a
+            strided timestep system, we elect to use the following indices:{' '}
+            {'['}1, 3, 5, 7, 10, 20{']'}. Here are the results:
+          </p>
+
+          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+            Campanile
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_sdedit_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Campanile
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+            Dog
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dogs_sdedit_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Dog
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+            Shoe
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe_sdedit_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/shoe.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Shoe
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+            1.7.1: Editing Hand-Drawn and Web Images
+          </h3>
         </div>
         <div />
       </div>
