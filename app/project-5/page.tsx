@@ -1654,10 +1654,11 @@ export default function Project4() {
             prompt. This is done so that we can generate random samples. Earlier
             on, we did image-to-image translation, where for example, we went
             from the Campanile to something completely random. What if we want
-            to make it so that it wasn't random? We can use text-conditional
-            image-to-image translation to achieve that. As t gets smaller, we
-            should see that image getting more and more similar to the prompt,
-            and further away from the original. Here are the results:
+            to make it so that it wasn&apos;t random? We can use
+            text-conditional image-to-image translation to achieve that. As t
+            gets smaller, we should see that image getting more and more similar
+            to the prompt, and further away from the original. Here are the
+            results:
           </p>
 
           <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
@@ -1960,7 +1961,8 @@ export default function Project4() {
             I personally found the car and pencil example to be particularly
             interesting. At one point, we can see both of them, where the pencil
             is in the car as the model tries to figure out which one to
-            include/exclude.
+            include/exclude. Similarly, we had a intermediate photo in the third
+            example where the dog was wearing the hat!
           </p>
         </div>
         <div />
