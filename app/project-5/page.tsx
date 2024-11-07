@@ -846,7 +846,7 @@ export default function Project4() {
             {'['}1, 3, 5, 7, 10, 20{']'}. Here are the results:
           </p>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-5">
             Campanile
           </h4>
 
@@ -945,7 +945,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
             Dog
           </h4>
 
@@ -1044,7 +1044,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
             Shoe
           </h4>
 
@@ -1163,7 +1163,7 @@ export default function Project4() {
             Here are some examples!
           </p>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
             Car: Web Image
           </h4>
 
@@ -1262,7 +1262,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
             Building: Drawn Image
           </h4>
 
@@ -1361,7 +1361,7 @@ export default function Project4() {
             </div>
           </div>
 
-          <h4 className="text-sm font-semibold text-left text-black dark:text-white mt-3">
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
             Tree: Drawn Image
           </h4>
 
@@ -1460,12 +1460,513 @@ export default function Project4() {
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-3">
+          <h3 className="text-md font-semibold text-left text-black dark:text-white mt-3">
             1.7.2: Inpainting
           </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we use the iterative denoising with CFG function
+            for another use case: inpainting. We define a mask, where if the
+            mask is 0, we use the original image; if the mask is 1, we fill it
+            with a new generated image. Here are the results:
+          </p>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-5">
+            Campanile
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Campanile
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_inprint_mask.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Campanile Mask
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_inprint_to_replace.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Hole to Fill
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_inprinted.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Result
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
+            Car
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/m240_og.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Car
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/m240_inprint_mask.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Car Mask
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/m240_inprint_to_replace.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Hole to Fill
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/m240_inprinted.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Result
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-3">
+            Dog
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Dog
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_inprint_mask.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Dog Mask
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_inprint_to_replace.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Hole to Fill
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_inprinted.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Result
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-md font-semibold text-left text-black dark:text-white mt-3">
+            1.7.3: Text-Conditional Image-to-image Translation
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            So far, we have been using &quot;a high quality photo&quot; as our
+            prompt. This is done so that we can generate random samples. Earlier
+            on, we did image-to-image translation, where for example, we went
+            from the Campanile to something completely random. What if we want
+            to make it so that it wasn't random? We can use text-conditional
+            image-to-image translation to achieve that. As t gets smaller, we
+            should see that image getting more and more similar to the prompt,
+            and further away from the original. Here are the results:
+          </p>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Campanile, Prompt: A Rocket Ship
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile_txt_conditioned_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campanile.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Campanile
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Car, Prompt: A Pencil
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_txt_conditioned_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/car_og.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Car
+              </p>
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Dog, Prompt: A Man Wearing a Hat
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_1.jpg"
+                alt="250"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 1
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_3.jpg"
+                alt="500"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 3
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_5.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 5
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_7.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 7
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_10.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 10
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog_txt_conditioned_20.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                i_start = 20
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/dog.jpg"
+                alt="750"
+                width={150}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Original Dog
+              </p>
+            </div>
+          </div>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            I personally found the car and pencil example to be particularly
+            interesting. At one point, we can see both of them, where the pencil
+            is in the car as the model tries to figure out which one to
+            include/exclude.
+          </p>
         </div>
         <div />
       </div>
+
+      <Footer />
     </div>
   );
 }
