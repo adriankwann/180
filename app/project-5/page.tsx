@@ -1964,6 +1964,156 @@ export default function Project4() {
             include/exclude. Similarly, we had a intermediate photo in the third
             example where the dog was wearing the hat!
           </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-8">
+            1.8: Visual Anagrams
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we attempt to create visual anagrams, which are
+            images that combine two different prompts in interesting ways. In
+            our case, when we flip the image by 180 degrees, we should see the
+            other prompt come out. Here are the results:
+          </p>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1: An oil painting of people around a campfire
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2: An oil painting of an old man
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campfile_old_man.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/campfile_old_man.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+                style={{ transform: 'scaleY(-1)' }}
+              />
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1: City skyline of skyscrapers
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2: A large crowd of people
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/skyline_people.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/skyline_people.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+                style={{ transform: 'scaleY(-1)' }}
+              />
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1: A mountain in the distance
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2: A deep underground cave
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/cave_mountain.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/cave_mountain.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+                style={{ transform: 'scaleY(-1)' }}
+              />
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-8">
+            1.9: Hybrid Images
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we create hybrid images, which should display one
+            image from far away and another image when class. This is done by
+            using highpass and lowpass filters as lowpass frequencies dominate
+            as we move further and further away from the image and vice versa.
+          </p>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1/Lowpass: A lithograph of a skull
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2/Highpass: A lithograph of waterfalls
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/hybrid_waterfall_skull.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+          </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1/Lowpass: A pencil
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2/Highpass: A realistic photo of a skyscraper
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/hybrid_pencil_skyscraper.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+          </div>
         </div>
         <div />
       </div>
