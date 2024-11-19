@@ -70,7 +70,7 @@ export default function Project4() {
               id="part1"
               className="text-xl font-semibold text-left text-black dark:text-white"
             >
-              Part 0. Setup
+              1.0. Setup
             </h2>
 
             <p className="text-sm mt-3 text-slate-500 dark:text-slate-300 text-left">
@@ -2114,6 +2114,410 @@ export default function Project4() {
               />
             </div>
           </div>
+
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-8">
+            Prompt 1/Lowpass: A lithograph of a mountain
+          </h4>
+          <h4 className="text-sm font-semibold text-center text-black dark:text-white mt-2">
+            Prompt 2/Highpass: A lithograph of a dog
+          </h4>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/hybrid_dog_mountain.jpg"
+                alt="250"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-semibold text-left text-black dark:text-white">
+            Part B
+          </h2>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we aim to train our own diffusion model to produce
+            new images based off of the MNIST dataset.
+          </p>
+
+          <h3 className="text-xl font-semibold text-left text-black dark:text-white mt-8">
+            Part 1: Training a Single-Step Denoising UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            We first start with implementing a simple one-step denoiser.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-4">
+            <div className="text-center text-sm inline-block">
+              <Latex>{`$L = \\mathbb{E}_{z,x} \\| D_{\\theta}(z) - x \\|^2$`}</Latex>
+            </div>
+
+            <p className="text-sm text-center text-slate-500 dark:text-slate-300">
+              <span>
+                <Latex>{`$z$`}</Latex> = noisy image,{' '}
+              </span>
+              <span>
+                <Latex>{`$x$`}</Latex> = image,{' '}
+              </span>
+              <span>
+                <Latex>{`$D_{\\theta}(z)$`}</Latex> = denoised image.
+              </span>
+            </p>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            1.1 Implementing the UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            We first implement the UNet architecture.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/basic_unet.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                UNet Architecture
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            And here are the UNet operations used above:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/unet_ops.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                UNet Operations
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            1.2: Using the UNet to Train a Denoiser
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            We then use the UNet to train a denoiser. In order to do so, we pass
+            in training pairs (z, x), where z is the noisy MNIST image, and x is
+            the clean MNIST image. For each clean image x, we can create our z
+            noisy image by doing the following:
+          </p>
+          <div className="flex justify-center gap-4 mt-4 mb-4">
+            <div className="text-center text-sm inline-block">
+              <Latex>{`$z = x + \\sigma \\epsilon, \\ \\text{where} \\ \\epsilon \\sim N(0, \\mathbb{I}).$`}</Latex>
+            </div>
+          </div>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Sigma here defines how much noise we want to add to the original
+            clean image. Here is a visualization demonstrating that:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/viz_sigmas.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Different Noising Processes
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Note that in reality, we are batching these operations together with
+            respect to the training batch size. Hence, we're computing multiple
+            noisy images at once. Now that we have our training pairs, we can
+            start training.
+          </p>
+
+          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-4">
+            1.2.1 Training
+          </h4>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Here, we start training the model. Here are the parameters we are
+            using:
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Batch size: 256
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Number of epochs: 5
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Optimizer: Adam with learning rate of 1e-4
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Number of Hidden Dimensions = 128 for UNet
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/training_loss.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Loss for Single Step Denoiser
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            And here are the results:
+          </p>
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/first_epoch_viz.png',
+              description: '1st Epoch',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/final_epoch_viz.png',
+              description: '5th Epoch',
+            }}
+          />
+
+          <h4 className="text-md font-semibold text-left text-black dark:text-white mt-4">
+            1.2.2 Out-of-Distribution Testing
+          </h4>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Now, we use different sigma values for our test set to see how well
+            our model can generalize.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/out_of_dist.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Results on digits from the test set with varying noise levels.
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-semibold text-left text-black dark:text-white mt-4">
+            Part 2: Training a Diffusion Model
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Now, we&apos;re ready to train the full diffusion model. In the
+            previous section, we solved for this equation:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-4">
+            <div className="text-center text-sm inline-block">
+              <Latex>{`$L = \\mathbb{E}_{z,x} \\| D_{\\theta}(z) - x \\|^2$`}</Latex>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Now, we solve for this equation:
+          </p>
+          <div className="flex justify-center gap-4 mt-4 mb-4">
+            <div className="text-center text-sm inline-block">
+              <Latex>{`$L = \\mathbb{E}_{\\epsilon, z} \\| \\epsilon_{\\theta}(z) - \\epsilon \\|^2$`}</Latex>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Essentially, we previously predicted the image. Now, we predict the
+            noise added at each step. These are equivalent.
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            However, we saw in part A that doing one-step denoising is not a
+            good idea. Instead, we should use iterative denoising. In part A,
+            given that we were generating more complicated images, we did T=1000
+            iterations. Now, we do T=300, since we're only generating MNIST
+            digits.
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            We first define our betas and alphas just like in part A, where when
+            t is close to 0, alpha_bar is close to 1, and when t is close to T,
+            alpha_bar is close to 0. Our final objective is:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-4">
+            <div className="text-center text-sm inline-block">
+              <Latex>{`$L = \\mathbb{E}_{\\epsilon, x_0, t} \\| \\epsilon_{\\theta}(x_t, t) - \\epsilon \\|^2.$`}</Latex>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            2.1 Adding Time Conditioning to UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            The first modification we need to do is add time conditioning to our
+            original UNet architecture. We first define a new block, the Fully
+            Connected Block (FCBlock), to do so.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/FCBlock.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Fully Connected Block
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            And here is the updated UNet architecture, incorporating FCBlocks.
+          </p>
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/TimeConditionalUNet.png"
+                alt="250"
+                width={650}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Time Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            2.2 Training the UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Here's the training algorithm we use:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/TimeTrainingAlg.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Algorithm For Time Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            And here are the parameters we use:
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Batch size: 128
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Number of epochs: 20
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Optimizer: Adam with initial learning rate of 1e-3 and exponential
+            learning rate decay scheduler with gamma=0.1^(1.0/num_epochs).
+          </p>
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            - Number of Hidden Dimensions: 64
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/time_ddpm_training_loss.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Loss For Time Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            2.3 Sampling from the UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Now we need to test how well our UNet is able to generate new
+            samples. Here's the algorithm we use:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/TimeSampling.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sampling Algorithm For Time Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/time_ddpm_samples_epoch_5.png',
+              description: 'Samples, Epoch=5',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/time_ddpm_samples_epoch_20.png',
+              description: 'Samples, Epoch=20',
+            }}
+          />
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            As one can see, it does a OK job at generating new samples. However,
+            it's likely that the model doesn't have a good understanding of
+            different digits just yet. Hence, we need to also condition on the
+            class of each digit in order to make this as robust as possible.
+          </p>
         </div>
         <div />
       </div>
