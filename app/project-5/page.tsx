@@ -2426,7 +2426,7 @@ export default function Project4() {
           </h3>
 
           <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
-            Here's the training algorithm we use:
+            Here&apos;s the training algorithm we use:
           </p>
 
           <div className="flex justify-center gap-4 mt-4 mb-8">
