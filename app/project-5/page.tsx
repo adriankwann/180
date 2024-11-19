@@ -2519,6 +2519,95 @@ export default function Project4() {
             condition on the class of each digit in order to make this as robust
             as possible.
           </p>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            2.4 Adding Class-Conditioning to UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            As mentioned above, in order to give us more control over what we
+            generate, we can add one more condition: the class of each digit.
+            However, we should still allow the model to generate without the
+            class condition; hence, we implement a dropout rate of 0.1, where we
+            occasionally drop the class condition and set it to a zero vector.
+            Otherwise, we set it to a one-hot vector of length 10 (the number of
+            classes we have here).
+          </p>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Here&apos;s the training algorithm we use:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/ClassTraining.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Algorithm For Class Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/class_ddpm_training_loss.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Loss For Class Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            2.5 Sampling from the Class-Conditioned UNet
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            We use the same sampling process here, albeit adding the class
+            condition. In addition, we also add classifier-free guidance from
+            part A in order to improve the results. Here&apos; the sampling
+            algorithm we use:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-4 mb-8">
+            <div className="flex-none">
+              <Image
+                src="https://ak-cs180.s3.us-east-2.amazonaws.com/ClassSampling.png"
+                alt="250"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sampling Algorithm For Class Conditional UNet
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            Here&apos;s the results:
+          </p>
+
+          <DoublePhoto
+            photo1={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/class_ddpm_samples_epoch_5.png',
+              description: 'Samples, Epoch=5',
+            }}
+            photo2={{
+              src: 'https://ak-cs180.s3.us-east-2.amazonaws.com/class_ddpm_samples_epoch_20.png',
+              description: 'Samples, Epoch=20',
+            }}
+          />
         </div>
         <div />
       </div>
