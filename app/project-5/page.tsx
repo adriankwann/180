@@ -2608,6 +2608,18 @@ export default function Project4() {
               description: 'Samples, Epoch=20',
             }}
           />
+
+          <h3 className="text-lg font-semibold text-left text-black dark:text-white mt-4">
+            Conclusion
+          </h3>
+
+          <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
+            This project was a great learning experience for me. To be able to
+            implement a diffusion model from scratch has really solidified my
+            understanding. I found CFG to be particularly interesting, and I
+            hope that someone finds an explanation for why it works so well
+            soon!
+          </p>
         </div>
         <div />
       </div>
