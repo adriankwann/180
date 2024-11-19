@@ -13,6 +13,7 @@ import {
   Filter,
   ScanFace,
   GalleryHorizontalEnd,
+  ImageDown,
 } from 'lucide-react';
 
 export function NavDropDown() {
@@ -55,7 +56,7 @@ export function NavDropDown() {
 
         <DropdownMenuItem asChild>
           <Link href="/project-5">
-            <GalleryHorizontalEnd className="mr-2 h-4 w-4" />
+            <ImageDown className="mr-2 h-4 w-4" />
             <span>Project 5: Diffusion</span>
           </Link>
         </DropdownMenuItem>
