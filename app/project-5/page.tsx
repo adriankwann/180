@@ -2248,9 +2248,9 @@ export default function Project4() {
 
           <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
             Note that in reality, we are batching these operations together with
-            respect to the training batch size. Hence, we're computing multiple
-            noisy images at once. Now that we have our training pairs, we can
-            start training.
+            respect to the training batch size. Hence, we&apos;re computing
+            multiple noisy images at once. Now that we have our training pairs,
+            we can start training.
           </p>
 
           <h4 className="text-md font-semibold text-left text-black dark:text-white mt-4">
@@ -2362,7 +2362,7 @@ export default function Project4() {
             However, we saw in part A that doing one-step denoising is not a
             good idea. Instead, we should use iterative denoising. In part A,
             given that we were generating more complicated images, we did T=1000
-            iterations. Now, we do T=300, since we're only generating MNIST
+            iterations. Now, we do T=300, since we&apos;re only generating MNIST
             digits.
           </p>
 
@@ -2483,7 +2483,7 @@ export default function Project4() {
 
           <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
             Now we need to test how well our UNet is able to generate new
-            samples. Here's the algorithm we use:
+            samples. Here&apos;s the algorithm we use:
           </p>
 
           <div className="flex justify-center gap-4 mt-4 mb-8">
@@ -2514,9 +2514,10 @@ export default function Project4() {
 
           <p className="text-sm text-left text-slate-500 dark:text-slate-300 mt-3">
             As one can see, it does a OK job at generating new samples. However,
-            it's likely that the model doesn't have a good understanding of
-            different digits just yet. Hence, we need to also condition on the
-            class of each digit in order to make this as robust as possible.
+            it&apos;s likely that the model doesn&apos;t have a good
+            understanding of different digits just yet. Hence, we need to also
+            condition on the class of each digit in order to make this as robust
+            as possible.
           </p>
         </div>
         <div />
