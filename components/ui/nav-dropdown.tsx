@@ -60,6 +60,13 @@ export function NavDropDown() {
             <span>Project 5: Diffusion</span>
           </Link>
         </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <Link href="/project-6">
+            <ImageDown className="mr-2 h-4 w-4" />
+            <span>Project 6: NeRF</span>
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
