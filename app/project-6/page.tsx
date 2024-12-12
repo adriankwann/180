@@ -738,6 +738,86 @@ export default function Project4() {
               </p>
             </div>
           </div>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Results
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            I trained the model for 1500 steps, with a batch size of 10k and
+            learning rate of 5e-4. I achieved a final validation PSNR of 23.64.
+          </p>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Here are the training and validation PSNR curves:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/train_psnr_nerf.png"
+                alt="MLP"
+                width={350}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training PSNR
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="final_proj/val_psnr_nerf.png"
+                alt="MLP"
+                width={350}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Validation PSNR (every 100 steps)
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Here are some snapshots I took of the training process using the
+            first validation image:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/val_ims_nerf.png"
+                alt="MLP"
+                width={900}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Training Progress
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            And finally, here&apos;s the novel view video:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/nerf_video.gif"
+                alt="MLP"
+                width={200}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Novel View
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
