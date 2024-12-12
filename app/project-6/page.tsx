@@ -746,6 +746,8 @@ export default function Project4() {
           <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
             I trained the model for 1500 steps, with a batch size of 10k and
             learning rate of 5e-4. I achieved a final validation PSNR of 23.64.
+            Validation PSNRs were calculated by averaging results over 6
+            validation images.
           </p>
 
           <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
