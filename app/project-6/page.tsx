@@ -509,6 +509,235 @@ export default function Project4() {
             Now we can start using a neural radiance field to represent a 3D
             space. We use the lego scene from the original NeRF paper.
           </p>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Part 2.1: Create Rays from Cameras
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Before continuing, we need to define a few conversion functions for
+            pixels.
+          </p>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            The first step is to create a Camera to World Coordinate Conversion.
+            Here is the formulation of how to do World to Camera conversion, and
+            we will be doing the inverse of this process:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/w2c.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                W2C
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            The matrix above is the w2c or extrinsic matrix.
+          </p>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            The second thing we need to do is a Pixel to Camera Coordinate
+            Conversion. Here&apos;s the formulation:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/p2c.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Pixel to Camera
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="final_proj/K.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                K: Intrinsic Matrix
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Finally, we define a Pixel to Ray conversion, which yields the ray
+            origin and ray direction.
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/ray_o.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Ray Origin
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="final_proj/ray_dir.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Ray Direction
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Part 2.2: Sampling
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            In part 1, we randomly sampled on a single image to get the pixel
+            color and pixel coordinates. Now given a task of sampling N rays, I
+            implemented to first sample M images, and then sample N // M rays
+            from every image.
+          </p>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we also implement a Sampling Points along Rays
+            function. Essentially, given a ray, we have to convert it into a
+            point in 3D space. We essentially uniformly create some samples
+            along the ray and set this to t, with some perturbation to allow for
+            more varying point locations. We then define x = R_o + R_d * t.
+          </p>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Part 2.3: Putting the Dataloading All Together
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            In this section, we need to write a dataloader that randomly sample
+            pixels from multiview images, and return ray origin, ray direction
+            and pixel colors from the dataloader. Here are the visualizations:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/sample_rays.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Sampling 100 rays
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="final_proj/random_rays_one_img.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Random rays from first image
+              </p>
+            </div>
+
+            <div className="flex-none">
+              <Image
+                src="final_proj/top_left.png"
+                alt="MLP"
+                width={250}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Random rays from top left of first image
+              </p>
+            </div>
+          </div>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Part 2.4: Neural Radiance Field
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Here&apos;s the architecture of the network we are using:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/nerf_mlp.png"
+                alt="MLP"
+                width={500}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                MLP
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            Compared to part 1, there are a few changes. First, the network is
+            now a lot deeper as our task has gotten considerably harder. We
+            return both a density and the color, and we use a sigmoid function
+            to get the color to fall in between 0 and 1, and use the ReLU
+            function to get the density to be positive. We still use the
+            positional encoding function defined in part 1; however, we now need
+            to encode the ray direction alongside the coordinates, using a max
+            frequency L of 4 and 10 respectively. Note that we inject the
+            encoded ray direction by concating after the split to predict color;
+            this seems to have a positive effect on our training results.
+          </p>
+
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mt-4 mb-4">
+            Part 2.5: Volumetric Rendering
+          </h3>
+
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-3">
+            The volume rendering equation is:
+          </p>
+
+          <div className="flex justify-center gap-4 mt-8 mb-8">
+            <div className="flex-none">
+              <Image
+                src="final_proj/volrend.png"
+                alt="MLP"
+                width={350}
+                height={200}
+                className="rounded-md"
+              />
+              <p className="text-xs text-center text-slate-500 dark:text-slate-300 mt-3">
+                Volrend
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
